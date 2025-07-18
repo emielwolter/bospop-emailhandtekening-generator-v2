@@ -43,6 +43,11 @@ body {
   color: var(--color-black);
   line-height: 1.4;
 }
+@media screen and (max-width: 800px) {
+  body {
+    background-position: left;
+  }
+}
 header {
   padding: 1rem 3rem;
   display: flex;
