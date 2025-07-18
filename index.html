@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bospop E-mailhandtekening Generator</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <img src="assets/SVG/logo.svg" alt="Bospop Logo" class="logo" />
+    </header>
+    <div class="container">
+      <h1>E-mailhandtekening Generator</h1>
+      <p>
+        Vul hieronder je gegevens in om automatisch een e-mailhandtekening in de
+        nieuwe Bospop-huisstijl te genereren. Je kunt de handtekening eenvoudig
+        kopiëren en plakken in je e-mailprogramma. Voor instructies over het
+        instellen van een handtekening in Outlook, klik
+        <a
+          href="https://support.microsoft.com/nl-nl/office/een-e-mailhandtekening-maken-en-toevoegen-in-outlook-com-776d9006-abdf-444e-b5b7-a61821dff034"
+          target="_blank"
+          >hier</a
+        >.
+      </p>
+
+      <form id="sigForm">
+        <div class="form-group">
+          <label for="name">Naam</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Bijv. Jan Jansen"
+          />
+        </div>
+        <div class="form-group">
+          <label for="department">Afdeling</label>
+          <select id="department" name="department">
+            <option value="">— Kies afdeling —</option>
+            <option value="Bedrijfsbureau">Bedrijfsbureau</option>
+            <option value="Crew-Office">Crew-Office</option>
+            <option value="Food & Beverage">Food & Beverage</option>
+            <option value="Marketing & Communicatie">
+              Marketing & Communicatie
+            </option>
+            <option value="Site-Productie">Site-Productie</option>
+            <option value="Vergunning & Veiligheid">
+              Vergunning & Veiligheid
+            </option>
+            <option value="Stage/Backstage">Stage/Backstage</option>
+            <option value="Field/Guest-Press/Skydeck/Rand-Programma">
+              Field/Guest-Press/Skydeck/Rand-Programma
+            </option>
+            <option value="Campings">Campings</option>
+            <option value="Service/Crew-Area">Service/Crew-Area</option>
+            <option value="Mobiliteit">Mobiliteit</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="role">Functie</label>
+          <input
+            type="text"
+            id="role"
+            name="role"
+            placeholder="Bijv. Sales Manager"
+          />
+        </div>
+        <div class="form-group">
+          <label for="phone">Telefoonnummer</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="+31 6 12345678"
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">E-mailadres</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="naam@bedrijf.nl"
+          />
+        </div>
+      </form>
+
+      <h2>Live Preview</h2>
+      <div id="signaturePreview"></div>
+      <button id="copyBtn">Kopieer handtekening</button>
+    </div>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
