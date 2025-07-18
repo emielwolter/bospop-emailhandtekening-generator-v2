@@ -13,7 +13,7 @@ function renderSignature(data) {
     : '<span class="placeholder">+31 6 12345678</span>';
   const email = data.email
     ? `<a href="mailto:${data.email}">${data.email}</a>`
-    : '<span class="placeholder">naam@bedrijf.nl</span>';
+    : '<span class="placeholder">v.achternaam@bospopfestival.nl</span>';
   return `
     <table class="sig-table" cellpadding="0" cellspacing="0">
       <tr>

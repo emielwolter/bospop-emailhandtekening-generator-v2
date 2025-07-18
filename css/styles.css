@@ -61,6 +61,8 @@ h1 {
 }
 
 .container {
+  box-sizing: border-box;
+  width: calc(100% - 2rem);
   max-width: 800px;
   margin: 0 auto 2rem;
   padding: 2rem;
@@ -73,8 +75,8 @@ h2 {
   margin-top: 2rem;
   color: var(--color-black);
 }
-p {
-  font-size: 1rem;
+a {
+  color: var(--color-pink);
 }
 .form-group {
   margin-bottom: 1.5rem;
@@ -84,17 +86,46 @@ label {
   font-family: var(--font-heading);
   font-weight: 900;
   font-size: 1rem;
+  letter-spacing: 0.01rem;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
   color: var(--color-black);
 }
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* 2) Optioneel voor IE */
+select::-ms-expand {
+  display: none;
+}
+
 input,
 select {
   width: 100%;
   padding: 0.75rem;
   font-family: var(--font-body);
   font-size: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #4d4d4d;
+  border-radius: 0;
+}
+
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23000000' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 12px 8px;
+}
+
+input:focus,
+input:active,
+select:focus {
+  outline: var(--color-yellow) solid 2px;
+  outline-offset: 2px;
 }
 button {
   background-color: var(--color-pink);
@@ -106,21 +137,17 @@ button {
   font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.05rem;
-  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
-  clip-path: polygon(
-    1em 0%,
-    /* linkerbovenhoek  → 1em naar rechts */ 100% 0%,
-    /* rechterbovenhoek */ calc(100% - 1em) 100%,
-    /* rechteronderhoek → 1em naar links */ 0% 100% /* linkeronderhoek */
-  );
+  /* clip-path: polygon(1em 0%, 100% 0%, calc(100% - 1em) 100%, 0% 100%); */
 }
 button:hover {
   background-color: var(--color-black);
 }
 #signaturePreview {
   border: 2px solid var(--color-yellow);
+  /* outline: var(--color-yellow) solid 2px; */
+  /* outline-offset: 2px; */
   padding: 1rem;
   margin-bottom: 1rem;
   background-color: #fff;
