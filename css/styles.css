@@ -92,6 +92,19 @@ a {
 .form-group {
   margin-bottom: 1.5rem;
 }
+
+/* 1) flex-container voor de twee velden */
+.form-row {
+  display: flex;
+  gap: 1rem; /* ruimte tussen de twee velden */
+}
+
+/* 2) laat beide form-groups even breed meeschalen */
+.form-row .form-group {
+  flex: 1; /* beide nemen 50% van de ruimte */
+  margin-bottom: 1.5rem; /* behoud je bestaande afstand naar onder */
+}
+
 label {
   display: block;
   font-family: var(--font-heading);

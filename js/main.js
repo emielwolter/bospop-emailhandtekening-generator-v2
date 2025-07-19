@@ -4,8 +4,8 @@ const copyBtn = document.getElementById("copyBtn");
 
 function renderSignature(data) {
   const website = `<a href="https://bospopfestival.nl/" style="text-decoration: none; color: #000;">bospopfestival.nl</a>`;
-  const name =
-    data.name || '<span class="placeholder">Voornaam Achternaam</span>';
+  const fname = data.fname || '<span class="placeholder">Voornaam</span>';
+  const lname = data.lname || '<span class="placeholder">Achternaam</span>';
   const role = data.role || '<span class="placeholder">Functie</span>';
   const department =
     data.department || '<span class="placeholder">Afdeling</span>';
@@ -20,7 +20,7 @@ function renderSignature(data) {
         <tbody>
             <tr>
                 <td style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; WIDTH:300px; COLOR: #000; line-height: 18px; border-right: solid 1px #000; padding-left: 20px;">
-                    <span style="FONT-SIZE: 26pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; line-height: 30px; text-transform: uppercase; font-weight: 900">${name}</span><br/>
+                    <span style="FONT-SIZE: 26pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; line-height: 30px; text-transform: uppercase; font-weight: 900">${fname}<br>${lname}</span><br/>
                     <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; text-transform: uppercase; font-weight: bold">${department}</span><br/>
                     <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; text-transform: uppercase; font-weight: bold">${role}</span>
                 </td>
@@ -42,7 +42,8 @@ function renderSignature(data) {
 form.addEventListener("input", () => {
   const fd = new FormData(form);
   const data = {
-    name: fd.get("name")?.trim(),
+    fname: fd.get("fname")?.trim(),
+    lname: fd.get("lname")?.trim(),
     department: fd.get("department")?.trim(),
     role: fd.get("role")?.trim(),
     phone: fd.get("phone")?.trim(),
