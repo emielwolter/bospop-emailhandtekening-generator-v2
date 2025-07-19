@@ -3,30 +3,31 @@ const preview = document.getElementById("signaturePreview");
 const copyBtn = document.getElementById("copyBtn");
 
 function renderSignature(data) {
+  const website = `<a href="https://bospopfestival.nl/" style="text-decoration: none; color: #000;">bospopfestival.nl</a>`;
   const name =
     data.name || '<span class="placeholder">Voornaam Achternaam</span>';
   const role = data.role || '<span class="placeholder">Functie</span>';
   const department =
     data.department || '<span class="placeholder">Afdeling</span>';
   const phone = data.phone
-    ? `<a href="tel:${data.phone}">${data.phone}</a>`
+    ? `<a href="tel:${data.phone}" style="text-decoration: none; color: #000;">${data.phone}</a>`
     : '<span class="placeholder">+31 6 12345678</span>';
   const email = data.email
-    ? `<a href="mailto:${data.email}">${data.email}</a>`
+    ? `<a href="mailto:${data.email}" style="text-decoration: none; color: #000;">${data.email}</a>`
     : '<span class="placeholder">v.achternaam@bospopfestival.nl</span>';
   return `
     <table cellspacing="0" cellpadding="0" border="0" style="COLOR: #262626; FONT-FAMILY: Arial, sans-serif; width:600px;">      
         <tbody>
             <tr>
-                <td style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; WIDTH:300px; COLOR: #000; line-height: 18px; border-right: solid 1px #000;">
-                    <span style="FONT-SIZE: 23pt; FONT-FAMILY: Arial Black, Arial, sans-serif; COLOR: #000; text-transform: uppercase; font-weight: bold">${name}</span><br/>
+                <td style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; WIDTH:300px; COLOR: #000; line-height: 18px; border-right: solid 1px #000; padding-left: 20px;">
+                    <span style="FONT-SIZE: 26pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; line-height: 30px; text-transform: uppercase; font-weight: 900">${name}</span><br/>
                     <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; text-transform: uppercase; font-weight: bold">${department}</span><br/>
                     <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; text-transform: uppercase; font-weight: bold">${role}</span>
                 </td>
-                <td style="FONT-SIZE: 10pt; width: 300px; line-height: 18px; padding-left: 10px;">
+                <td style="FONT-SIZE: 10pt; width: 300px; line-height: 18px; padding-left: 20px;">
                     <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; font-weight: bold;">${phone}</span><br/>
                     <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; font-weight: bold;">${email}</span><br/>
-                    <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; font-weight: bold;">bospopfestival.nl</span><br/>
+                    <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; font-weight: bold;">${website}</span><br/>
                 </td>
             </tr>
             <tr>
