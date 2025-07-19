@@ -19,15 +19,19 @@ function renderSignature(data) {
         <tbody>
             <tr>
                 <td style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; WIDTH:300px; COLOR: #000; line-height: 18px; border-right: solid 1px #000;">
-                    <span style="FONT-SIZE: 23pt; FONT-FAMILY: Arial Black, Arial, sans-serif; COLOR: #000; text-transform: uppercase;">${name}</span><br/>
-                    <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; font-weight: bold">${department}</span><br/>
-                    <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; font-weight: bold">${role}</span>
+                    <span style="FONT-SIZE: 23pt; FONT-FAMILY: Arial Black, Arial, sans-serif; COLOR: #000; text-transform: uppercase; font-weight: bold">${name}</span><br/>
+                    <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; text-transform: uppercase; font-weight: bold">${department}</span><br/>
+                    <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; text-transform: uppercase; font-weight: bold">${role}</span>
                 </td>
                 <td style="FONT-SIZE: 10pt; width: 300px; line-height: 18px; padding-left: 10px;">
                     <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; font-weight: bold;">${phone}</span><br/>
                     <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; font-weight: bold;">${email}</span><br/>
                     <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; font-weight: bold;">bospopfestival.nl</span><br/>
                 </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-top: 10px; max-width:600px;">
+                    <a href="https://www.bospopfestival.nl/e-mailhandtekening/" target="_blank"><img border="0" src="assets/bospop-e-mailhandtekening-footer.png" alt="Footer Social Icons" width="600" style="max-width:600px; height:auto; border:0;"></a>
             </tr>
         </tbody>
     </table>

@@ -156,7 +156,7 @@ button:hover {
   background-color: var(--color-black);
 }
 #signaturePreview {
-  border: 2px solid var(--color-yellow);
+  border: 1px solid #000;
   /* outline: var(--color-yellow) solid 2px; */
   /* outline-offset: 2px; */
   padding: 1rem;
