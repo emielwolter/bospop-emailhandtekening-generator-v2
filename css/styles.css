@@ -176,4 +176,5 @@ button:hover {
   margin-bottom: 1rem;
   background-color: #fff;
   min-height: 120px;
+  overflow-x: scroll;
 }
