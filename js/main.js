@@ -33,6 +33,7 @@ function renderSignature(data) {
             <tr>
                 <td colspan="2" style="padding-top: 10px; max-width:600px;">
                     <a href="https://www.bospopfestival.nl/e-mailhandtekening/" target="_blank"><img border="0" src="/assets/bospop-e-mailhandtekening-footer.png" alt="Footer Social Icons" width="600" style="max-width:600px; height:auto; border:0;"></a>
+                </td>
             </tr>
         </tbody>
     </table>
