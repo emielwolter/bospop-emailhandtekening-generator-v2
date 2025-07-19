@@ -45,7 +45,7 @@ body {
 }
 @media screen and (max-width: 800px) {
   body {
-    background-position: left;
+    background-position: right;
   }
 }
 header {
