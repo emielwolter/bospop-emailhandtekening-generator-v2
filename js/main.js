@@ -58,7 +58,7 @@ departmentSelect.addEventListener("change", () => {
   }
 });
 
-// Update de handtekening bij invoer in het formulier
+// Update de handtekening bij invoer in het formulier en sla op in localStorage
 form.addEventListener("input", () => {
   const fd = new FormData(form);
   const data = {
@@ -73,6 +73,8 @@ form.addEventListener("input", () => {
     email: fd.get("email")?.trim(),
   };
   preview.innerHTML = renderSignature(data);
+  // Save to localStorage
+  localStorage.setItem("bospopSignatureForm", JSON.stringify(data));
 });
 
 // Kopieer de handtekening naar het klembord
@@ -112,5 +114,32 @@ form.addEventListener("submit", (e) => {
   }
 });
 
-// Trigger een eerste rendering van de handtekening
-form.dispatchEvent(new Event("input"));
+// Herstel formuliervelden uit localStorage bij laden van de pagina
+window.addEventListener("DOMContentLoaded", () => {
+  const saved = localStorage.getItem("bospopSignatureForm");
+  if (saved) {
+    const data = JSON.parse(saved);
+    if (data.fname) form.elements["fname"].value = data.fname;
+    if (data.lname) form.elements["lname"].value = data.lname;
+    if (data.department) {
+      // Check if department is one of the select options
+      const found = Array.from(departmentSelect.options).some(
+        (opt) => opt.value === data.department
+      );
+      if (found) {
+        departmentSelect.value = data.department;
+        customDepartmentInput.style.display = "none";
+        customDepartmentInput.value = "";
+      } else {
+        departmentSelect.value = "anders";
+        customDepartmentInput.style.display = "block";
+        customDepartmentInput.value = data.department;
+      }
+    }
+    if (data.role) form.elements["role"].value = data.role;
+    if (data.phone) form.elements["phone"].value = data.phone;
+    if (data.email) form.elements["email"].value = data.email;
+  }
+  // Trigger rendering
+  form.dispatchEvent(new Event("input"));
+});
