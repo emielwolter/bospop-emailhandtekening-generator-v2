@@ -1,6 +1,10 @@
 const form = document.getElementById("sigForm");
 const preview = document.getElementById("signaturePreview");
 const copyBtn = document.getElementById("copyBtn");
+const departmentSelect = document.getElementById("department");
+const customDepartmentInput = document.getElementById("customDepartment");
+const emailInput = document.getElementById("email");
+const emailError = document.getElementById("emailError");
 
 function renderSignature(data) {
   const website = `<a href="https://bospopfestival.nl/" style="text-decoration: none; color: #000;">bospopfestival.nl</a>`;
@@ -44,12 +48,26 @@ function renderSignature(data) {
   `;
 }
 
+// Toon/verberg het extra inputveld op basis van de selectie
+departmentSelect.addEventListener("change", () => {
+  if (departmentSelect.value === "anders") {
+    customDepartmentInput.style.display = "block";
+  } else {
+    customDepartmentInput.style.display = "none";
+    customDepartmentInput.value = ""; // Reset de waarde als het verborgen wordt
+  }
+});
+
+// Update de handtekening bij invoer in het formulier
 form.addEventListener("input", () => {
   const fd = new FormData(form);
   const data = {
     fname: fd.get("fname")?.trim(),
     lname: fd.get("lname")?.trim(),
-    department: fd.get("department")?.trim(),
+    department:
+      fd.get("department") === "anders"
+        ? fd.get("customDepartment")?.trim()
+        : fd.get("department")?.trim(),
     role: fd.get("role")?.trim(),
     phone: fd.get("phone")?.trim(),
     email: fd.get("email")?.trim(),
@@ -57,6 +75,7 @@ form.addEventListener("input", () => {
   preview.innerHTML = renderSignature(data);
 });
 
+// Kopieer de handtekening naar het klembord
 copyBtn.addEventListener("click", async () => {
   try {
     await navigator.clipboard.write([
@@ -71,12 +90,7 @@ copyBtn.addEventListener("click", async () => {
   }
 });
 
-form.dispatchEvent(new Event("input"));
-
-const emailInput = document.getElementById("email");
-const emailError = document.getElementById("emailError");
-
-// Validate email on blur (when the user leaves the field)
+// Valideer e-mailadres bij verlies van focus
 emailInput.addEventListener("blur", () => {
   const email = emailInput.value.trim();
 
@@ -87,7 +101,7 @@ emailInput.addEventListener("blur", () => {
   }
 });
 
-// Validate email on form submission
+// Valideer e-mailadres bij formulierverzending
 form.addEventListener("submit", (e) => {
   const email = emailInput.value.trim();
 
@@ -97,3 +111,6 @@ form.addEventListener("submit", (e) => {
     emailInput.focus(); // Focus the email field for correction
   }
 });
+
+// Trigger een eerste rendering van de handtekening
+form.dispatchEvent(new Event("input"));
