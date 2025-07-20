@@ -19,6 +19,7 @@
   font-weight: 900;
   font-style: normal;
 }
+
 :root {
   --color-yellow: #ffc332;
   --color-pink: #e62350;
@@ -29,80 +30,83 @@
   --font-body: "Barlow Condensed", sans-serif;
   font-size: 18px;
 }
+
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   font-family: var(--font-body);
-  background-image: url(../assets/bospop-emailhandtekening-generator-background.png);
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
+  background: url(../assets/bospop-emailhandtekening-generator-background.png)
+    center/cover no-repeat fixed;
   color: var(--color-black);
   line-height: 1.4;
 }
+
 @media screen and (max-width: 800px) {
   body {
     background-position: right;
   }
 }
+
 header {
   padding: 1rem 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 header img.logo {
   max-width: 350px;
 }
-h1 {
+
+h1,
+h2 {
   font-family: var(--font-heading);
-  font-size: 2rem;
   text-transform: uppercase;
-  color: #000;
+  color: var(--color-black);
   margin-top: 0;
 }
 
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+}
+
 .container {
-  box-sizing: border-box;
-  /* width: calc(100% - 2rem); */
   max-width: 800px;
   margin: 0 auto 2rem;
   padding: 2rem;
   background-color: #fff;
 }
+
 @media screen and (max-width: 800px) {
   .container {
     width: calc(100% - 1rem);
     padding: 1rem;
   }
 }
-h2 {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  margin-top: 2rem;
-  color: var(--color-black);
-}
+
 a {
   color: var(--color-pink);
 }
+
 .form-group {
   margin-bottom: 1.5rem;
 }
 
-/* 1) flex-container voor de twee velden */
 .form-row {
   display: flex;
-  gap: 1rem; /* ruimte tussen de twee velden */
+  gap: 1rem;
 }
 
-/* 2) laat beide form-groups even breed meeschalen */
 .form-row .form-group {
-  flex: 1; /* beide nemen 50% van de ruimte */
-  margin-bottom: 1.5rem; /* behoud je bestaande afstand naar onder */
+  flex: 1;
 }
 
 label {
@@ -116,17 +120,6 @@ label {
   color: var(--color-black);
 }
 
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-/* 2) Optioneel voor IE */
-select::-ms-expand {
-  display: none;
-}
-
 input,
 select {
   width: 100%;
@@ -138,11 +131,15 @@ select {
 }
 
 select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23000000' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23000000' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E")
+    no-repeat right 1rem center / 12px 8px;
+}
 
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 12px 8px;
+select::-ms-expand {
+  display: none;
 }
 
 input:focus,
@@ -151,9 +148,10 @@ select:focus {
   outline: var(--color-yellow) solid 2px;
   outline-offset: 2px;
 }
+
 button {
   background-color: var(--color-pink);
-  color: #ffffff;
+  color: #fff;
   border: none;
   padding: 0.75rem 1.5rem;
   font-family: var(--font-heading);
@@ -163,15 +161,14 @@ button {
   letter-spacing: 0.05rem;
   cursor: pointer;
   transition: background-color 0.3s;
-  /* clip-path: polygon(1em 0%, 100% 0%, calc(100% - 1em) 100%, 0% 100%); */
 }
+
 button:hover {
   background-color: var(--color-black);
 }
+
 #signaturePreview {
   border: 1px solid #000;
-  /* outline: var(--color-yellow) solid 2px; */
-  /* outline-offset: 2px; */
   padding: 1rem;
   margin-bottom: 1rem;
   background-color: #fff;
