@@ -166,4 +166,67 @@ window.addEventListener("DOMContentLoaded", () => {
     preview.innerHTML = renderSignature({});
     emailError.textContent = "";
   });
+
+  // Cookie Consent & Google Analytics logic
+  function showCookieBanner() {
+    const banner = document.getElementById("cookieConsent");
+    if (!localStorage.getItem("cookieConsent")) {
+      banner.classList.add("show");
+    } else {
+      banner.classList.remove("show");
+    }
+  }
+  function loadGA() {
+    if (!window.gtagScriptLoaded) {
+      var script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=G-KFBZF0WNVM";
+      document.head.appendChild(script);
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      window.gtag = gtag;
+      gtag("js", new Date());
+      gtag("config", "G-KFBZF0WNVM", { anonymize_ip: true });
+      window.gtagScriptLoaded = true;
+    }
+  }
+  showCookieBanner();
+  var acceptBtn = document.getElementById("acceptCookies");
+  var declineBtn = document.getElementById("declineCookies");
+  acceptBtn.addEventListener("click", function () {
+    localStorage.setItem("cookieConsent", "accepted");
+    document.getElementById("cookieConsent").classList.remove("show");
+    loadGA();
+  });
+  declineBtn.addEventListener("click", function () {
+    localStorage.setItem("cookieConsent", "declined");
+    document.getElementById("cookieConsent").classList.remove("show");
+  });
+  // If already accepted, load GA
+  if (localStorage.getItem("cookieConsent") === "accepted") {
+    loadGA();
+  }
+  // Custom event tracking for buttons
+  if (copyBtn) {
+    copyBtn.addEventListener("click", function () {
+      if (window.gtagScriptLoaded && window.gtag) {
+        gtag("event", "copy_signature", {
+          event_category: "interaction",
+          event_label: "Kopieer handtekening",
+        });
+      }
+    });
+  }
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function () {
+      if (window.gtagScriptLoaded && window.gtag) {
+        gtag("event", "reset_form", {
+          event_category: "interaction",
+          event_label: "Reset handtekening",
+        });
+      }
+    });
+  }
 });
