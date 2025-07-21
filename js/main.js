@@ -12,8 +12,10 @@ function renderSignature(data) {
   const fname = data.fname || '<span class="placeholder">Voornaam</span>';
   const lname = data.lname || '<span class="placeholder">Achternaam</span>';
   const role = data.role || '<span class="placeholder">Functie</span>';
-  const department =
-    data.department || '<span class="placeholder">Afdeling</span>';
+  let department = "";
+  if (data.department && data.department.trim() !== "") {
+    department = data.department;
+  }
   const phone = data.phone
     ? `<a href="tel:${data.phone}" style="text-decoration: none; color: #000;">${data.phone}</a>`
     : ""; // No placeholder if phone is empty
@@ -28,7 +30,11 @@ function renderSignature(data) {
                 <td style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; WIDTH:300px; COLOR: #000; line-height: 18px; border-right: solid 1px #000; padding: 0 20px;">
                     <span style="FONT-SIZE: 23pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; line-height: 26px; text-transform: uppercase; font-weight: 900">${fname}<br>${lname}</span><br/>
                     <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; text-transform: uppercase; font-weight: bold">${role}</span><br/>
-                    <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; text-transform: uppercase; font-weight: bold">${department}</span>
+                    ${
+                      department
+                        ? `<span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; text-transform: uppercase; font-weight: bold">${department}</span>`
+                        : ""
+                    }
                 </td>
                 <td style="FONT-SIZE: 10pt; width: 300px; line-height: 18px; padding: 0 20px;">
                     ${
