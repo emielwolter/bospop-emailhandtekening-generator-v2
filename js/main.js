@@ -48,7 +48,7 @@ function renderSignature(data) {
               note
                 ? `
               <tr>
-                  <td colspan="2" style="max-width:600px; padding: 10px 20px;">
+                  <td colspan="2" style="max-width:600px; padding: 10px 20px; line-height: 11px;">
                       <span style="FONT-SIZE: 9pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; line-height: 11px;">${note}</span>
                   </td>
               </tr>
