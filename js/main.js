@@ -19,16 +19,17 @@ function renderSignature(data) {
   const email = data.email
     ? `<a href="mailto:${data.email}" style="text-decoration: none; color: #000;">${data.email}</a>`
     : '<span class="placeholder">v.achternaam@bospopfestival.nl</span>';
+  const note = data.note || "";
   return `
     <table cellspacing="0" cellpadding="0" border="0" style="COLOR: #262626; FONT-FAMILY: Arial, sans-serif; width:600px;">      
         <tbody>
             <tr>
-                <td style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; WIDTH:300px; COLOR: #000; line-height: 18px; border-right: solid 1px #000; padding-left: 20px;">
+                <td style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; WIDTH:300px; COLOR: #000; line-height: 18px; border-right: solid 1px #000; padding: 0 20px;">
                     <span style="FONT-SIZE: 23pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; line-height: 26px; text-transform: uppercase; font-weight: 900">${fname}<br>${lname}</span><br/>
-                    <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; text-transform: uppercase; font-weight: bold">${department}</span><br/>
-                    <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; text-transform: uppercase; font-weight: bold">${role}</span>
+                    <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; text-transform: uppercase; font-weight: bold">${role}</span><br/>
+                    <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; text-transform: uppercase; font-weight: bold">${department}</span>
                 </td>
-                <td style="FONT-SIZE: 10pt; width: 300px; line-height: 18px; padding-left: 20px;">
+                <td style="FONT-SIZE: 10pt; width: 300px; line-height: 18px; padding: 0 20px;">
                     ${
                       phone
                         ? `<span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; font-weight: bold;">${phone}</span><br/>`
@@ -41,6 +42,11 @@ function renderSignature(data) {
             <tr>
                 <td colspan="2" style="padding-top: 10px; max-width:600px;">
                     <a href="https://www.bospopfestival.nl/e-mailhandtekening/" target="_blank"><img border="0" src="https://bospop-emailhandtekening-generator.vercel.app/assets/bospop-e-mailhandtekening-footer.png" alt="Social Media footer" width="600" style="max-width:600px; height:36px; border:0;"></a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-top: 10px; max-width:600px; padding: 0 20px;">
+                    <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000;">${note}</span>
                 </td>
             </tr>
         </tbody>
@@ -71,6 +77,7 @@ form.addEventListener("input", () => {
     role: fd.get("role")?.trim(),
     phone: fd.get("phone")?.trim(),
     email: fd.get("email")?.trim(),
+    note: fd.get("note")?.trim(),
   };
   preview.innerHTML = renderSignature(data);
   // Save to localStorage
@@ -139,6 +146,7 @@ window.addEventListener("DOMContentLoaded", () => {
     if (data.role) form.elements["role"].value = data.role;
     if (data.phone) form.elements["phone"].value = data.phone;
     if (data.email) form.elements["email"].value = data.email;
+    if (data.note) form.elements["note"].value = data.note;
   }
   // Trigger rendering
   form.dispatchEvent(new Event("input"));
