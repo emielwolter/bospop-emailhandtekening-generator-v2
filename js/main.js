@@ -19,6 +19,10 @@ function renderSignature(data) {
   const phone = data.phone
     ? `<a href="tel:${data.phone}" style="text-decoration: none; color: #000;">${data.phone}</a>`
     : ""; // No placeholder if phone is empty
+  const linkedin =
+    data.linkedin && data.linkedin.trim() !== ""
+      ? `<a href="${data.linkedin}" style="text-decoration: none; color: #000;" target="_blank">Voeg me toe op LinkedIn</a>`
+      : "";
   const email = data.email
     ? `<a href="mailto:${data.email}" style="text-decoration: none; color: #000;">${data.email}</a>`
     : '<span class="placeholder">v.achternaam@bospopfestival.nl</span>';
@@ -44,6 +48,11 @@ function renderSignature(data) {
                     }
                     <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; font-weight: bold;">${email}</span><br/>
                     <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; font-weight: bold;">${website}</span><br/>
+                    ${
+                      linkedin
+                        ? `<span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; font-weight: bold;">${linkedin}</span><br/>`
+                        : ""
+                    }
                 </td>
             </tr>
             <tr>
@@ -90,6 +99,7 @@ form.addEventListener("input", () => {
     role: fd.get("role")?.trim(),
     phone: fd.get("phone")?.trim(),
     email: fd.get("email")?.trim(),
+    linkedin: fd.get("linkedin")?.trim(),
     note: fd.get("note")?.trim(),
   };
   preview.innerHTML = renderSignature(data);
@@ -159,6 +169,7 @@ window.addEventListener("DOMContentLoaded", () => {
     if (data.role) form.elements["role"].value = data.role;
     if (data.phone) form.elements["phone"].value = data.phone;
     if (data.email) form.elements["email"].value = data.email;
+    if (data.linkedin) form.elements["linkedin"].value = data.linkedin;
     if (data.note) form.elements["note"].value = data.note;
   }
   // Trigger rendering

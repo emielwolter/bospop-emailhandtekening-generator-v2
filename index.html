@@ -68,7 +68,22 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="department">Afdeling</label>
+          <label for="role">Functie</label>
+          <input
+            type="text"
+            id="role"
+            name="role"
+            placeholder="Functie"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="department"
+            >Afdeling
+            <span style="font-weight: 400; text-transform: lowercase"
+              >(optioneel)</span
+            ></label
+          >
           <select id="department" name="department" required>
             <option value="">— Kies afdeling —</option>
             <option value="Bedrijfsbureau">Bedrijfsbureau</option>
@@ -99,16 +114,7 @@
             style="display: none; margin-top: 10px"
           />
         </div>
-        <div class="form-group">
-          <label for="role">Functie</label>
-          <input
-            type="text"
-            id="role"
-            name="role"
-            placeholder="Functie"
-            required
-          />
-        </div>
+
         <div class="form-group">
           <label for="phone"
             >Telefoonnummer
@@ -139,6 +145,21 @@
             aria-live="polite"
             role="alert"
           ></span>
+        </div>
+        <div class="form-group">
+          <label for="linkedin"
+            >LinkedIn URL
+            <span style="font-weight: 400; text-transform: lowercase"
+              >(optioneel)</span
+            ></label
+          >
+          <input
+            type="url"
+            id="linkedin"
+            name="linkedin"
+            placeholder="https://www.linkedin.com/in/jouwprofiel"
+            style="width: 100%; margin-bottom: 10px"
+          />
         </div>
         <div class="form-group">
           <label for="note"
