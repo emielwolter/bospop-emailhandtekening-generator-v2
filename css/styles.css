@@ -22,7 +22,7 @@
 }
 .cookie-btn {
   margin-left: 1rem;
-  background-color: var(--color-turquoise);
+  background-color: var(--color-pink);
   color: #000;
   border: none;
   padding: 0.5rem 1.2rem;
@@ -35,7 +35,7 @@
   transition: background-color 0.3s;
 }
 .cookie-btn-accept {
-  background-color: var(--color-pink);
+  background-color: var(--color-turquoise);
   color: #000;
 }
 .cookie-btn:hover {
@@ -220,7 +220,7 @@ select:focus {
 }
 
 button {
-  background-color: var(--color-pink);
+  background-color: var(--color-turquoise);
   color: #000;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -239,7 +239,7 @@ button:hover {
 }
 
 #resetBtn {
-  background-color: var(--color-turquoise);
+  background-color: var(--color-pink);
 }
 #resetBtn:hover {
   background-color: var(--color-black);
