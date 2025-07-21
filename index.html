@@ -81,7 +81,6 @@
             <option value="Service/Crew-Area">Service/Crew-Area</option>
             <option value="Mobiliteit">Mobiliteit</option>
             <option value="Bestuur">Bestuur</option>
-
             <option value="anders">Anders, namelijk:</option>
           </select>
           <input
@@ -117,8 +116,14 @@
             id="email"
             name="email"
             placeholder="v.achternaam@bospopfestival.nl"
+            aria-describedby="emailError"
           />
-          <span id="emailError" style="color: red; font-size: 0.9em"></span>
+          <span
+            id="emailError"
+            style="color: red; font-size: 0.9em"
+            aria-live="polite"
+            role="alert"
+          ></span>
         </div>
         <div class="form-group">
           <label for="note"
@@ -138,8 +143,17 @@
       </form>
 
       <h2>Preview</h2>
-      <div id="signaturePreview"></div>
-      <button id="copyBtn">Kopieer handtekening</button>
+      <div
+        id="signaturePreview"
+        aria-label="Voorbeeld van e-mailhandtekening"
+        tabindex="0"
+      ></div>
+      <button
+        id="copyBtn"
+        aria-label="Kopieer de e-mailhandtekening naar het klembord"
+      >
+        Kopieer handtekening
+      </button>
       <hr style="margin: 2rem 0" />
       <p>
         Neem voor hulp bij het instellen van de e-mailhandtekening in Outlook
