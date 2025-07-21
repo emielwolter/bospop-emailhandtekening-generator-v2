@@ -171,6 +171,15 @@ button:hover {
   background-color: var(--color-black);
 }
 
+#resetBtn {
+  background-color: var(--color-turquoise);
+  color: #000;
+}
+#resetBtn:hover {
+  background-color: var(--color-black);
+  color: #fff;
+}
+
 #signaturePreview {
   border: 1px solid #000;
   padding: 1rem;

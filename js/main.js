@@ -1,6 +1,7 @@
 const form = document.getElementById("sigForm");
 const preview = document.getElementById("signaturePreview");
 const copyBtn = document.getElementById("copyBtn");
+const resetBtn = document.getElementById("resetBtn");
 const departmentSelect = document.getElementById("department");
 const customDepartmentInput = document.getElementById("customDepartment");
 const emailInput = document.getElementById("email");
@@ -156,4 +157,13 @@ window.addEventListener("DOMContentLoaded", () => {
   }
   // Trigger rendering
   form.dispatchEvent(new Event("input"));
+  // Reset button handler
+  resetBtn.addEventListener("click", () => {
+    form.reset();
+    customDepartmentInput.style.display = "none";
+    customDepartmentInput.value = "";
+    localStorage.removeItem("bospopSignatureForm");
+    preview.innerHTML = renderSignature({});
+    emailError.textContent = "";
+  });
 });
