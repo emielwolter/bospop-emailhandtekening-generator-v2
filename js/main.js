@@ -44,11 +44,17 @@ function renderSignature(data) {
                     <a href="https://www.bospopfestival.nl/e-mailhandtekening/" target="_blank"><img border="0" src="https://bospop-emailhandtekening-generator.vercel.app/assets/bospop-e-mailhandtekening-footer.png" alt="Social Media footer" width="600" style="max-width:600px; height:36px; border:0;"></a>
                 </td>
             </tr>
-            <tr>
-                <td colspan="2" style="padding-top: 10px; max-width:600px; padding: 0 20px;">
-                    <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000;">${note}</span>
-                </td>
-            </tr>
+            ${
+              note
+                ? `
+              <tr>
+                  <td colspan="2" style="max-width:600px; padding: 10px 20px;">
+                      <span style="FONT-SIZE: 9pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; line-height: 11px;">${note}</span>
+                  </td>
+              </tr>
+              `
+                : ""
+            }
         </tbody>
     </table>
   `;
