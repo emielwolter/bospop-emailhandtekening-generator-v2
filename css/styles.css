@@ -35,6 +35,7 @@ body {
     center/cover no-repeat fixed;
   color: var(--color-black);
   line-height: 1.4;
+  height: 100vh;
 }
 
 @media screen and (max-width: 800px) {
