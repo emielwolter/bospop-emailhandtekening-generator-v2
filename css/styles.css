@@ -200,6 +200,17 @@ textarea {
   border-radius: 0;
 }
 
+.field-error {
+  border-color: var(--color-pink);
+}
+
+.error-message {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  color: var(--color-pink);
+}
+
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -252,4 +263,28 @@ button:hover {
   background-color: #fff;
   min-height: 120px;
   overflow-x: scroll;
+}
+
+.status-message {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  display: none;
+}
+
+.status-message--visible {
+  display: block;
+}
+
+.status-message--success {
+  background-color: #e5f7f4;
+  border: 1px solid var(--color-turquoise);
+  color: #00423b;
+}
+
+.status-message--error {
+  background-color: #ffe6ec;
+  border: 1px solid var(--color-pink);
+  color: #5a0015;
 }

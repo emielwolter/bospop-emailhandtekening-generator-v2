@@ -4,26 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="description"
+      content="Interne tool om automatisch een e-mailhandtekening in de Bospop-huisstijl te genereren en te kopiëren naar je e-mailprogramma."
+    />
     <title>Bospop E-mailhandtekening Generator</title>
 
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/assets/favicon/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/assets/favicon/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/assets/favicon/favicon-16x16.png"
-    />
-    <link rel="manifest" href="/assets/favicon/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="assets/favicon/site.webmanifest" />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
@@ -33,10 +23,8 @@
     <div class="container">
       <h1>E-mailhandtekening Generator</h1>
       <p>
-        Vul hieronder je gegevens in om automatisch een e-mailhandtekening in de
-        nieuwe Bospop-huisstijl te genereren. Je kunt de handtekening eenvoudig
-        kopiëren en plakken in je e-mailprogramma. Voor instructies over het
-        instellen van een handtekening in Outlook, klik
+        Vul hieronder je gegevens in om automatisch een e-mailhandtekening in de nieuwe Bospop-huisstijl te genereren. Je kunt de handtekening
+        eenvoudig kopiëren en plakken in je e-mailprogramma. Voor instructies over het instellen van een handtekening in Outlook, klik
         <a
           href="https://support.microsoft.com/nl-nl/office/een-e-mailhandtekening-maken-en-toevoegen-in-outlook-com-776d9006-abdf-444e-b5b7-a61821dff034"
           target="_blank"
@@ -48,136 +36,79 @@
         <div class="form-row">
           <div class="form-group">
             <label for="fname">Voornaam</label>
-            <input
-              type="text"
-              id="fname"
-              name="fname"
-              placeholder="Voornaam"
-              required
-            />
+            <input type="text" id="fname" name="fname" placeholder="Voornaam" required aria-describedby="fnameError" />
+            <span id="fnameError" class="error-message" aria-live="polite" role="alert"></span>
           </div>
           <div class="form-group">
             <label for="lname">Achternaam</label>
-            <input
-              type="text"
-              id="lname"
-              name="lname"
-              placeholder="Achternaam"
-              required
-            />
+            <input type="text" id="lname" name="lname" placeholder="Achternaam" required aria-describedby="lnameError" />
+            <span id="lnameError" class="error-message" aria-live="polite" role="alert"></span>
           </div>
         </div>
         <div class="form-group">
           <label for="role">Functie</label>
-          <input
-            type="text"
-            id="role"
-            name="role"
-            placeholder="Functie"
-            required
-          />
+          <input type="text" id="role" name="role" placeholder="Functie" required aria-describedby="roleError" />
+          <span id="roleError" class="error-message" aria-live="polite" role="alert"></span>
         </div>
         <div class="form-group">
-          <label for="department"
-            >Afdeling
-            <span style="font-weight: 400; text-transform: lowercase"
-              >(optioneel)</span
-            ></label
-          >
-          <select id="department" name="department" required>
+          <label for="department">Afdeling <span style="font-weight: 400; text-transform: lowercase">(optioneel)</span></label>
+          <select id="department" name="department" required aria-describedby="departmentError customDepartmentError">
             <option value="">— Kies afdeling —</option>
             <option value="Bedrijfsbureau">Bedrijfsbureau</option>
             <option value="Crew-Office">Crew-Office</option>
             <option value="Food & Beverage">Food & Beverage</option>
-            <option value="Marketing & Communicatie">
-              Marketing & Communicatie
-            </option>
+            <option value="Marketing & Communicatie">Marketing & Communicatie</option>
             <option value="Site-Productie">Site-Productie</option>
-            <option value="Vergunning & Veiligheid">
-              Vergunning & Veiligheid
-            </option>
+            <option value="Vergunning & Veiligheid">Vergunning & Veiligheid</option>
             <option value="Stage/Backstage">Stage/Backstage</option>
-            <option value="Field/Guest-Press/Skydeck/Rand-Programma">
-              Field/Guest-Press/Skydeck/Rand-Programma
-            </option>
+            <option value="Field/Guest-Press/Skydeck/Rand-Programma">Field/Guest-Press/Skydeck/Rand-Programma</option>
             <option value="Campings">Campings</option>
             <option value="Service/Crew-Area">Service/Crew-Area</option>
             <option value="Mobiliteit">Mobiliteit</option>
             <option value="Bestuur">Bestuur</option>
             <option value="anders">Anders, namelijk:</option>
           </select>
+          <span id="departmentError" class="error-message" aria-live="polite" role="alert"></span>
           <input
             type="text"
             id="customDepartment"
             name="customDepartment"
             placeholder="Voer afdeling in"
             style="display: none; margin-top: 10px"
+            aria-describedby="customDepartmentError"
           />
+          <span id="customDepartmentError" class="error-message" aria-live="polite" role="alert"></span>
         </div>
 
         <div class="form-group">
-          <label for="phone"
-            >Telefoonnummer
-            <span style="font-weight: 400; text-transform: lowercase"
-              >(optioneel)</span
-            ></label
-          >
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            placeholder="+31 6 12345678"
-          />
+          <label for="phone">Telefoonnummer <span style="font-weight: 400; text-transform: lowercase">(optioneel)</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="+31 6 42 43 79 39" aria-describedby="phoneError" inputmode="tel" />
+          <span id="phoneError" class="error-message" aria-live="polite" role="alert"></span>
         </div>
         <div class="form-group">
           <label for="email">E-mailadres</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="v.achternaam@bospopfestival.nl"
-            aria-describedby="emailError"
-            required
-          />
-          <span
-            id="emailError"
-            style="color: red; font-size: 0.9em"
-            aria-live="polite"
-            role="alert"
-          ></span>
+          <input type="email" id="email" name="email" placeholder="v.achternaam@bospopfestival.nl" aria-describedby="emailError" required />
+          <span id="emailError" class="error-message" aria-live="polite" role="alert"></span>
         </div>
         <div class="form-group">
-          <label for="linkedin"
-            >LinkedIn URL
-            <span style="font-weight: 400; text-transform: lowercase"
-              >(optioneel)</span
-            ></label
-          >
+          <label for="linkedin">LinkedIn URL <span style="font-weight: 400; text-transform: lowercase">(optioneel)</span></label>
           <input
             type="url"
             id="linkedin"
             name="linkedin"
             placeholder="https://www.linkedin.com/in/jouwprofiel"
             style="width: 100%; margin-bottom: 10px"
+            aria-describedby="linkedinError"
           />
+          <span id="linkedinError" class="error-message" aria-live="polite" role="alert"></span>
           <small
             >Tip: Je kunt je LinkedIn URL
-            <a
-              href="https://www.linkedin.com/public-profile/settings"
-              target="_blank"
-              rel="noopener"
-              >hier aanpassen</a
-            >
+            <a href="https://www.linkedin.com/public-profile/settings" target="_blank" rel="noopener">hier aanpassen</a>
             via je profiel instellingen</small
           >
         </div>
         <div class="form-group">
-          <label for="note"
-            >Opmerking
-            <span style="font-weight: 400; text-transform: lowercase"
-              >(optioneel)</span
-            ></label
-          >
+          <label for="note">Opmerking <span style="font-weight: 400; text-transform: lowercase">(optioneel)</span></label>
           <textarea
             id="note"
             name="note"
@@ -189,49 +120,34 @@
       </form>
 
       <h2>Preview</h2>
-      <div
-        id="signaturePreview"
-        aria-label="Voorbeeld van e-mailhandtekening"
-        tabindex="0"
-      ></div>
-      <button
-        id="copyBtn"
-        aria-label="Kopieer de e-mailhandtekening naar het klembord"
-      >
-        Kopieer handtekening
-      </button>
-      <button
-        id="resetBtn"
-        aria-label="Reset het formulier en de handtekening"
-        type="button"
-        style="margin-left: 1rem"
-      >
-        Reset
-      </button>
+      <div id="signaturePreview" aria-label="Voorbeeld van e-mailhandtekening" tabindex="0"></div>
+      <button id="copyBtn" aria-label="Kopieer de e-mailhandtekening naar het klembord">Kopieer handtekening</button>
+      <button id="resetBtn" aria-label="Reset het formulier en de handtekening" type="button" style="margin-left: 1rem">Reset</button>
+      <div id="statusMessage" class="status-message" role="status" aria-live="polite"></div>
       <hr style="margin: 2rem 0" />
       <p>
-        Neem voor hulp bij het instellen van de e-mailhandtekening in Outlook
-        contact op via
+        Neem voor hulp bij het instellen van de e-mailhandtekening in Outlook contact op via
         <a href="mailto:ICT@bospopfestival.nl">ICT@bospopfestival.nl</a>.
       </p>
       <p>
         Werkt de generator niet naar behoren? Meld dit via
-        <a href="mailto:marketing@bospopfestival.nl"
-          >marketing@bospopfestival.nl</a
-        >.
+        <a href="mailto:marketing@bospopfestival.nl">marketing@bospopfestival.nl</a>.
       </p>
     </div>
 
-    <script src="js/main.js"></script>
+    <noscript>
+      <div class="container" style="margin-top: 1rem; border: 1px solid #e62350; padding: 1rem; background-color: #ffe6ec">
+        <p style="margin: 0">Deze generator gebruikt JavaScript. Schakel JavaScript in je browser in om de e-mailhandtekening te kunnen genereren.</p>
+      </div>
+    </noscript>
+
+    <!-- Telefoonnummer library (libphonenumber-js) -->
+    <script defer src="https://unpkg.com/libphonenumber-js@1.11.6/bundle/libphonenumber-max.js"></script>
+    <script defer src="js/main.js"></script>
     <!-- Cookie Consent Banner -->
     <div class="cookie-consent" id="cookieConsent">
-      <span
-        >Deze website gebruikt Google Analytics om het gebruik te analyseren.
-        Wil je dit toestaan?</span
-      >
-      <button class="cookie-btn cookie-btn-accept" id="acceptCookies">
-        Ja, toestaan
-      </button>
+      <span>Deze website gebruikt Google Analytics om het gebruik te analyseren. Wil je dit toestaan?</span>
+      <button class="cookie-btn cookie-btn-accept" id="acceptCookies">Ja, toestaan</button>
       <button class="cookie-btn" id="declineCookies">Nee, liever niet</button>
     </div>
   </body>
