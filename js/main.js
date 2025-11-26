@@ -16,9 +16,13 @@ function renderSignature(data) {
   if (data.department && data.department.trim() !== "") {
     department = data.department;
   }
-  const phone = data.phone
-    ? `<a href="tel:${data.phone}" style="text-decoration: none; color: #000;">${data.phone}</a>`
-    : ""; // No placeholder if phone is empty
+
+  // Icoontjes (absolute HTTPS-URLs gebruiken!)
+  const iconPhone = `<img src="https://bospop-emailhandtekening-generator.vercel.app/assets/icons/icon-phone.png" alt="Tel" style="border:0; display:inline-block; width:14px; height:14px; margin-right:4px;" />`;
+  const iconMail = `<img src="https://bospop-emailhandtekening-generator.vercel.app/assets/icons/icon-mail.png" alt="E-mail" style="border:0; display:inline-block; width:14px; height:14px; margin-right:4px;" />`;
+  const iconWeb = `<img src="https://bospop-emailhandtekening-generator.vercel.app/assets/icons/icon-web.png" alt="Website" style="border:0; display:inline-block; width:14px; height:14px; margin-right:4px;" />`;
+  const iconLinkedIn = `<img src="https://bospop-emailhandtekening-generator.vercel.app/assets/icons/icon-linkedin.png" alt="LinkedIn" style="border:0; display:inline-block; width:14px; height:14px; margin-right:4px;" />`;
+  const phone = data.phone ? `<a href="tel:${data.phone}" style="text-decoration: none; color: #000;">${data.phone}</a>` : ""; // No placeholder if phone is empty
   const linkedin =
     data.linkedin && data.linkedin.trim() !== ""
       ? `<a href="${data.linkedin}" style="text-decoration: none; color: #000;" target="_blank">Voeg me toe op LinkedIn</a>`
@@ -29,32 +33,32 @@ function renderSignature(data) {
   const note = data.note || "";
   return `
     <table cellspacing="0" cellpadding="0" border="0" style="COLOR: #262626; FONT-FAMILY: Arial, sans-serif; width:600px;">      
-        <tbody>
-            <tr>
-                <td style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; WIDTH:300px; COLOR: #000; line-height: 18px; border-right: solid 1px #000; padding: 0 20px;">
-                    <span style="FONT-SIZE: 23pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; line-height: 26px; text-transform: uppercase; font-weight: 900">${fname}<br>${lname}</span><br/>
-                    <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; text-transform: uppercase; font-weight: bold">${role}</span><br/>
-                    ${
-                      department
-                        ? `<span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; text-transform: uppercase; font-weight: bold">${department}</span>`
-                        : ""
-                    }
-                </td>
-                <td style="FONT-SIZE: 10pt; width: 300px; line-height: 18px; padding: 0 20px;">
-                    ${
-                      phone
-                        ? `<span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; font-weight: bold;">${phone}</span><br/>`
-                        : ""
-                    }
-                    <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; font-weight: bold;">${email}</span><br/>
-                    <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; font-weight: bold;">${website}</span><br/>
-                    ${
-                      linkedin
-                        ? `<span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; font-weight: bold;">${linkedin}</span><br/>`
-                        : ""
-                    }
-                </td>
-            </tr>
+      <tbody>
+        <tr>
+          <td style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; WIDTH:300px; COLOR: #000; line-height: 18px; border-right: solid 1px #000; padding: 0 20px;">
+            <span style="FONT-SIZE: 23pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; line-height: 26px; text-transform: uppercase; font-weight: 900">${fname}<br>${lname}</span><br/>
+            <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; text-transform: uppercase; font-weight: bold">${role}</span><br/>
+            ${
+              department
+                ? `<span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; text-transform: uppercase; font-weight: bold">${department}</span>`
+                : ""
+            }
+          </td>
+          <td style="FONT-SIZE: 10pt; width: 300px; line-height: 18px; padding: 0 20px;">
+            ${
+              phone
+                ? `<span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; font-weight: bold;">${iconPhone}${phone}</span><br/>`
+                : ""
+            }
+            <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; font-weight: bold;">${iconMail}${email}</span><br/>
+            <span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; font-weight: bold;">${iconWeb}${website}</span><br/>
+            ${
+              linkedin
+                ? `<span style="FONT-SIZE: 10pt; FONT-FAMILY: Arial, sans-serif; COLOR: #000; font-weight: bold;">${iconLinkedIn}${linkedin}</span><br/>`
+                : ""
+            }
+          </td>
+        </tr>
             <tr>
                 <td colspan="2" style="padding-top: 10px; max-width:600px;">
                     <a href="https://www.bospopfestival.nl/e-mailhandtekening/" target="_blank"><img border="0" src="https://bospop-emailhandtekening-generator.vercel.app/assets/bospop-e-mailhandtekening-footer.png" alt="Social Media footer" width="600" style="max-width:600px; height:36px; border:0;"></a>
@@ -92,10 +96,7 @@ form.addEventListener("input", () => {
   const data = {
     fname: fd.get("fname")?.trim(),
     lname: fd.get("lname")?.trim(),
-    department:
-      fd.get("department") === "anders"
-        ? fd.get("customDepartment")?.trim()
-        : fd.get("department")?.trim(),
+    department: fd.get("department") === "anders" ? fd.get("customDepartment")?.trim() : fd.get("department")?.trim(),
     role: fd.get("role")?.trim(),
     phone: fd.get("phone")?.trim(),
     email: fd.get("email")?.trim(),
@@ -153,9 +154,7 @@ window.addEventListener("DOMContentLoaded", () => {
     if (data.lname) form.elements["lname"].value = data.lname;
     if (data.department) {
       // Check if department is one of the select options
-      const found = Array.from(departmentSelect.options).some(
-        (opt) => opt.value === data.department
-      );
+      const found = Array.from(departmentSelect.options).some((opt) => opt.value === data.department);
       if (found) {
         departmentSelect.value = data.department;
         customDepartmentInput.style.display = "none";
