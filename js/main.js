@@ -53,6 +53,26 @@ function isValidEmail(email) {
   return EMAIL_REGEX.test(email);
 }
 
+function ensureHttps(url = "") {
+  const value = url.trim();
+  if (!value) return "";
+
+  // If user forgets protocol (e.g. linkedin.com/in/...), make it absolute.
+  if (!/^https?:\/\//i.test(value)) {
+    return `https://${value.replace(/^\/\/+/, "")}`;
+  }
+
+  return value;
+}
+
+function debounce(fn, wait = 200) {
+  let t;
+  return (...args) => {
+    if (t) clearTimeout(t);
+    t = setTimeout(() => fn(...args), wait);
+  };
+}
+
 function sanitizePhone(phoneRaw) {
   // Voor tel:-href willen we een strak genormaliseerd nummer, bij voorkeur E.164
   const raw = phoneRaw.trim();
@@ -133,9 +153,10 @@ function renderSignature(data) {
   const website = `<a href="https://bospopfestival.nl/" style="${LINK_STYLE}" target="_blank"><span style="${LINK_SPAN_STYLE}">bospopfestival.nl</span></a>`;
 
   const linkedinRaw = data.linkedin?.trim() || "";
-  const linkedin = linkedinRaw
+  const linkedinHref = linkedinRaw ? ensureHttps(linkedinRaw) : "";
+  const linkedin = linkedinHref
     ? `<a href="${escapeHtml(
-        linkedinRaw
+        linkedinHref
       )}" style="${LINK_STYLE}" target="_blank" rel="noopener noreferrer"><span style="${LINK_SPAN_STYLE}">Voeg me toe op LinkedIn</span></a>`
     : "";
 
@@ -333,30 +354,20 @@ function handleResetClick() {
   if (preview) {
     preview.innerHTML = renderSignature({});
   }
-  if (emailInput && emailError) {
-    setFieldError(emailInput, emailError, "");
-  }
-  if (phoneInput && phoneError) {
-    setFieldError(phoneInput, phoneError, "");
-  }
-  if (fnameInput && fnameError) {
-    setFieldError(fnameInput, fnameError, "");
-  }
-  if (lnameInput && lnameError) {
-    setFieldError(lnameInput, lnameError, "");
-  }
-  if (roleInput && roleError) {
-    setFieldError(roleInput, roleError, "");
-  }
-  if (departmentSelect && departmentError) {
-    setFieldError(departmentSelect, departmentError, "");
-  }
-  if (customDepartmentInput && customDepartmentError) {
-    setFieldError(customDepartmentInput, customDepartmentError, "");
-  }
-  if (linkedinInput && linkedinError) {
-    setFieldError(linkedinInput, linkedinError, "");
-  }
+  const errorPairs = [
+    [emailInput, emailError],
+    [phoneInput, phoneError],
+    [fnameInput, fnameError],
+    [lnameInput, lnameError],
+    [roleInput, roleError],
+    [departmentSelect, departmentError],
+    [customDepartmentInput, customDepartmentError],
+    [linkedinInput, linkedinError],
+  ];
+
+  errorPairs.forEach(([inputEl, errorEl]) => {
+    if (inputEl && errorEl) setFieldError(inputEl, errorEl, "");
+  });
 
   showStatusMessage("Formulier en handtekening zijn gereset.", "success");
 
@@ -600,10 +611,9 @@ window.addEventListener("DOMContentLoaded", () => {
     linkedinInput.addEventListener("blur", () => validateLinkedinField());
   }
   if (phoneInput) {
+    const debouncedValidatePhone = debounce(() => validatePhoneField(), 250);
     phoneInput.addEventListener("blur", () => validatePhoneField());
-    phoneInput.addEventListener("input", () => {
-      validatePhoneField();
-    });
+    phoneInput.addEventListener("input", () => debouncedValidatePhone());
   }
   form.addEventListener("submit", (e) => {
     const isValid = validateFormOnSubmit();
@@ -625,21 +635,22 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   // Cookie Consent & Google Analytics logic
+  const cookieBanner = document.getElementById("cookieConsent");
+  const acceptBtn = document.getElementById("acceptCookies");
+  const declineBtn = document.getElementById("declineCookies");
+
   function showCookieBanner() {
-    const banner = document.getElementById("cookieConsent");
-    if (!banner) return;
+    if (!cookieBanner) return;
 
     if (!localStorage.getItem("cookieConsent")) {
-      banner.classList.add("show");
+      cookieBanner.classList.add("show");
     } else {
-      banner.classList.remove("show");
+      cookieBanner.classList.remove("show");
     }
   }
 
   function loadGA() {
-    if (!ENABLE_ANALYTICS || !GA_MEASUREMENT_ID) {
-      return;
-    }
+    if (!ENABLE_ANALYTICS || !GA_MEASUREMENT_ID) return;
 
     if (!window.gtagScriptLoaded) {
       const script = document.createElement("script");
@@ -661,23 +672,14 @@ window.addEventListener("DOMContentLoaded", () => {
 
   if (ENABLE_ANALYTICS) {
     showCookieBanner();
-  } else {
-    const banner = document.getElementById("cookieConsent");
-    if (banner) {
-      banner.classList.remove("show");
-    }
+  } else if (cookieBanner) {
+    cookieBanner.classList.remove("show");
   }
-
-  const acceptBtn = document.getElementById("acceptCookies");
-  const declineBtn = document.getElementById("declineCookies");
 
   if (ENABLE_ANALYTICS && acceptBtn) {
     acceptBtn.addEventListener("click", function () {
       localStorage.setItem("cookieConsent", "accepted");
-      const banner = document.getElementById("cookieConsent");
-      if (banner) {
-        banner.classList.remove("show");
-      }
+      if (cookieBanner) cookieBanner.classList.remove("show");
       loadGA();
     });
   }
@@ -685,10 +687,7 @@ window.addEventListener("DOMContentLoaded", () => {
   if (ENABLE_ANALYTICS && declineBtn) {
     declineBtn.addEventListener("click", function () {
       localStorage.setItem("cookieConsent", "declined");
-      const banner = document.getElementById("cookieConsent");
-      if (banner) {
-        banner.classList.remove("show");
-      }
+      if (cookieBanner) cookieBanner.classList.remove("show");
     });
   }
 
