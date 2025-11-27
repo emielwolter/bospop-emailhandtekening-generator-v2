@@ -119,7 +119,7 @@ function renderSignature(data) {
   <tbody>
     <tr>
       <td width="300" valign="top"
-        style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; line-height:18px; mso-line-height-rule:exactly; border-right:1px solid #000000; mso-border-right-alt:1pt solid #000000; padding-top:0; padding-right:20px; padding-bottom:0; padding-left:20px;">
+        style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; line-height:18px; mso-line-height-rule:exactly;  padding-top:0; padding-right:20px; padding-bottom:0; padding-left:20px;">
         <span
           style="font-size:23pt; font-family:'Arial Black', Arial, sans-serif; color:#000000; line-height:26px; mso-line-height-rule:exactly; text-transform:uppercase; font-weight:900;">
           ${fname}<br>${lname}
@@ -134,7 +134,7 @@ function renderSignature(data) {
             : ""
         }
       </td>
-
+      <td width="1" bgcolor="#000000"></td>
       <td width="300" valign="middle"
         style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; line-height:18px; mso-line-height-rule:exactly; padding-top:0; padding-right:20px; padding-bottom:0; padding-left:20px; vertical-align:middle;">
         ${
