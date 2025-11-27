@@ -185,10 +185,7 @@ function renderSignature(data) {
           <tbody>
             <tr>
               <td style="${NAME_ROW_SPACING_STYLE}">
-                <span
-                  style="font-size:23pt; font-family:'Arial Black', Arial, sans-serif; color:#000000; line-height:26px; mso-line-height-rule:exactly; text-transform:uppercase; font-weight:900; display:block;">
-                  ${fname}<br>${lname}
-                </span>
+                <span style="font-size:23pt; font-family:'Arial Black', Arial, sans-serif; color:#000000; line-height:26px; mso-line-height-rule:exactly; text-transform:uppercase; font-weight:900; display:block;">${fname}<br>${lname}</span>
               </td>
             </tr>
             <tr>
