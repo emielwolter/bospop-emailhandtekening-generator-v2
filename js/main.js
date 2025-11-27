@@ -41,6 +41,7 @@ const CONTACT_VALUE_CELL_STYLE =
 const CONTACT_TABLE_STYLE = "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;";
 const NAME_TABLE_STYLE = "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;";
 const NAME_ROW_SPACING_STYLE = "padding:0; padding-bottom:8px;";
+const PERSIST_DEBOUNCE_MS = 150;
 
 function escapeHtml(str = "") {
   return String(str).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
@@ -243,10 +244,24 @@ function getFormData() {
   };
 }
 
-function persistFormData() {
-  const data = getFormData();
+function persistFormData(presetData) {
+  if (!preview) return;
+  const data = presetData || getFormData();
   preview.innerHTML = renderSignature(data);
   localStorage.setItem("bospopSignatureForm", JSON.stringify(data));
+}
+
+let persistTimeoutId = null;
+
+function schedulePersistFormData() {
+  if (persistTimeoutId) {
+    clearTimeout(persistTimeoutId);
+  }
+
+  persistTimeoutId = window.setTimeout(() => {
+    persistTimeoutId = null;
+    persistFormData();
+  }, PERSIST_DEBOUNCE_MS);
 }
 
 // Status message helper
@@ -313,7 +328,9 @@ function handleResetClick() {
   form.reset();
   updateDepartmentVisibility();
   localStorage.removeItem("bospopSignatureForm");
-  preview.innerHTML = renderSignature({});
+  if (preview) {
+    preview.innerHTML = renderSignature({});
+  }
   if (emailInput && emailError) {
     setFieldError(emailInput, emailError, "");
   }
@@ -511,6 +528,10 @@ function validateFormOnSubmit() {
 
 // Herstel formuliervelden uit localStorage bij laden van de pagina
 window.addEventListener("DOMContentLoaded", () => {
+  if (!form) {
+    console.warn("Handtekening formulier niet gevonden; initialisatie overgeslagen.");
+    return;
+  }
   const saved = localStorage.getItem("bospopSignatureForm");
   if (saved) {
     const data = JSON.parse(saved);
@@ -549,7 +570,7 @@ window.addEventListener("DOMContentLoaded", () => {
     customDepartmentInput.addEventListener("input", () => validateDepartmentFields());
   }
   form.addEventListener("input", (e) => {
-    persistFormData();
+    schedulePersistFormData();
     const target = e.target;
     if (target === fnameInput) {
       validateRequiredInput(fnameInput, fnameError, "Vul je voornaam in.");
