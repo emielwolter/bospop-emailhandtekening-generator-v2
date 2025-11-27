@@ -208,7 +208,7 @@ function renderSignature(data) {
         ? `
     <tr>
       <td colspan="3"
-        style="max-width:601px; padding-top:10px; padding-right:20px; padding-bottom:10px; padding-left:20px; line-height:11px; mso-line-height-rule:exactly;">
+        style="max-width:601px; padding-top:10px; padding-right:20px; padding-bottom:10px; padding-left:20px; line-height:11px; mso-line-height-rule:exactly; line-break:anywhere;">
         <span
           style="font-size:9pt; font-family:Arial, sans-serif; color:#000000; line-height:11px; mso-line-height-rule:exactly;">${note}</span>
       </td>
