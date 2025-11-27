@@ -28,13 +28,17 @@ const GA_MEASUREMENT_ID = "G-KFBZF0WNVM";
 // Reusable constants & helpers
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const DEFAULT_REGION = "NL";
-const ICON_STYLE = "border:0; display:inline-block; width:12px; height:12px; margin-right:6px; -ms-interpolation-mode:bicubic;";
+const ICON_STYLE = "border:0; display:block; width:12px; height:12px; -ms-interpolation-mode:bicubic;";
 const ICON_PHONE = `<img src="${ASSET_BASE_URL}/icons/icon-phone.png" alt="Tel" style="${ICON_STYLE}" />`;
 const ICON_MAIL = `<img src="${ASSET_BASE_URL}/icons/icon-mail.png" alt="E-mail" style="${ICON_STYLE}" />`;
 const ICON_WEB = `<img src="${ASSET_BASE_URL}/icons/icon-web.png" alt="Website" style="${ICON_STYLE}" />`;
 const ICON_LINKEDIN = `<img src="${ASSET_BASE_URL}/icons/icon-linkedin.png" alt="LinkedIn" style="${ICON_STYLE}" />`;
 const LINK_STYLE = "color:#000000 !important; text-decoration:none !important;";
 const LINK_SPAN_STYLE = "color:#000000 !important; text-decoration:none !important;";
+const CONTACT_ICON_CELL_STYLE = "width:16px; padding:0; padding-right:8px; padding-bottom:6px; vertical-align:middle;";
+const CONTACT_VALUE_CELL_STYLE =
+  "font-size:10pt; font-family:Arial, sans-serif; color:#000000; font-weight:normal; line-height:18px; mso-line-height-rule:exactly; padding:0; padding-bottom:6px; vertical-align:middle;";
+const CONTACT_TABLE_STYLE = "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;";
 
 function escapeHtml(str = "") {
   return String(str).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
@@ -84,6 +88,19 @@ function formatPhoneNumber(phoneRaw) {
   return raw.replace(/\s+/g, " ");
 }
 
+function buildContactRow(iconHtml, contentHtml) {
+  if (!contentHtml) return "";
+  return `
+        <tr>
+          <td width="16" valign="middle" style="${CONTACT_ICON_CELL_STYLE}">
+            <font color="#000000">${iconHtml}</font>
+          </td>
+          <td valign="middle" style="${CONTACT_VALUE_CELL_STYLE}">
+            ${contentHtml}
+          </td>
+        </tr>`;
+}
+
 function renderSignature(data) {
   const fname = data.fname?.trim() ? escapeHtml(data.fname.trim()) : '<span class="placeholder">Voornaam</span>';
   const lname = data.lname?.trim() ? escapeHtml(data.lname.trim()) : '<span class="placeholder">Achternaam</span>';
@@ -113,6 +130,15 @@ function renderSignature(data) {
       )}" style="${LINK_STYLE}" target="_blank" rel="noopener noreferrer"><span style="${LINK_SPAN_STYLE}">Voeg me toe op LinkedIn</span></a>`
     : "";
 
+  const contactRows = [
+    buildContactRow(ICON_PHONE, phone),
+    buildContactRow(ICON_MAIL, email),
+    buildContactRow(ICON_WEB, website),
+    buildContactRow(ICON_LINKEDIN, linkedin),
+  ]
+    .filter(Boolean)
+    .join("");
+
   return `
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="601" align="left"
   style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; color:#262626; font-family:Arial, sans-serif; width:601px;">
@@ -137,24 +163,11 @@ function renderSignature(data) {
       <td width="1" bgcolor="#000000" style="width: 1px;"></td>
       <td width="300" valign="middle"
         style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; line-height:18px; mso-line-height-rule:exactly; padding-top:0; padding-right:20px; padding-bottom:0; padding-left:20px; vertical-align:middle;">
-        ${
-          phone
-            ? `<span style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; font-weight:normal; line-height:18px; mso-line-height-rule:exactly; mso-style-priority:100;"><font color="#000000">${ICON_PHONE}</font>${phone}</span><br>`
-            : ""
-        }
-        <span
-          style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; font-weight:normal; line-height:18px; mso-line-height-rule:exactly; mso-style-priority:100;">
-          ${ICON_MAIL}${email}
-        </span><br>
-        <span
-          style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; font-weight:normal; line-height:18px; mso-line-height-rule:exactly; mso-style-priority:100;">
-          ${ICON_WEB}${website}
-        </span><br>
-        ${
-          linkedin
-            ? `<span style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; font-weight:normal; line-height:18px; mso-line-height-rule:exactly; mso-style-priority:100;">${ICON_LINKEDIN}${linkedin}</span><br>`
-            : ""
-        }
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="${CONTACT_TABLE_STYLE}">
+          <tbody>
+            ${contactRows}
+          </tbody>
+        </table>
       </td>
       
     </tr>
