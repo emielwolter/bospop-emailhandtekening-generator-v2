@@ -117,15 +117,17 @@ function renderSignature(data) {
   const phoneDisplay = phoneRaw ? formatPhoneNumber(phoneRaw) : "";
   const phone =
     phoneHref && phoneDisplay
-      ? `<a href="tel:${phoneHref}" style="${LINK_STYLE}"><span style="${LINK_SPAN_STYLE}">${escapeHtml(phoneDisplay)}</span></a>`
+      ? `<a href="tel:${phoneHref}" style="${LINK_STYLE}" target="_blank"><span style="${LINK_SPAN_STYLE}">${escapeHtml(phoneDisplay)}</span></a>`
       : "";
 
   const emailRaw = data.email?.trim() || "";
   const email = emailRaw
-    ? `<a href="mailto:${escapeHtml(emailRaw)}" style="${LINK_STYLE}"><span style="${LINK_SPAN_STYLE}">${escapeHtml(emailRaw)}</span></a>`
+    ? `<a href="mailto:${escapeHtml(emailRaw)}" style="${LINK_STYLE}" target="_blank"><span style="${LINK_SPAN_STYLE}">${escapeHtml(
+        emailRaw
+      )}</span></a>`
     : '<span class="placeholder">v.achternaam@bospopfestival.nl</span>';
 
-  const website = `<a href="https://bospopfestival.nl/" style="${LINK_STYLE}"><span style="${LINK_SPAN_STYLE}">bospopfestival.nl</span></a>`;
+  const website = `<a href="https://bospopfestival.nl/" style="${LINK_STYLE}" target="_blank"><span style="${LINK_SPAN_STYLE}">bospopfestival.nl</span></a>`;
 
   const linkedinRaw = data.linkedin?.trim() || "";
   const linkedin = linkedinRaw
