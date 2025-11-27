@@ -35,9 +35,9 @@ const ICON_WEB = `<img src="${ASSET_BASE_URL}/icons/icon-web.png" alt="Website" 
 const ICON_LINKEDIN = `<img src="${ASSET_BASE_URL}/icons/icon-linkedin.png" alt="LinkedIn" style="${ICON_STYLE}" />`;
 const LINK_STYLE = "color:#000000 !important; text-decoration:none !important;";
 const LINK_SPAN_STYLE = "color:#000000 !important; text-decoration:none !important;";
-const CONTACT_ICON_CELL_STYLE = "width:16px; padding:0; padding-right:8px; padding-bottom:6px; vertical-align:middle;";
+const CONTACT_ICON_CELL_STYLE = "width:16px; padding:0; padding-right:8px; padding-bottom:3px; vertical-align:middle;";
 const CONTACT_VALUE_CELL_STYLE =
-  "font-size:10pt; font-family:Arial, sans-serif; color:#000000; font-weight:normal; line-height:18px; mso-line-height-rule:exactly; padding:0; padding-bottom:6px; vertical-align:middle;";
+  "font-size:10pt; font-family:Arial, sans-serif; color:#000000; font-weight:normal; line-height:18px; mso-line-height-rule:exactly; padding:0; padding-bottom:3px; vertical-align:middle;";
 const CONTACT_TABLE_STYLE = "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;";
 
 function escapeHtml(str = "") {
