@@ -49,6 +49,11 @@ function escapeHtml(str = "") {
   return String(str).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
 }
 
+function escapeUpper(str = "") {
+  // Uppercase first (for consistent rendering across Outlook variants), then escape.
+  return escapeHtml(String(str).toLocaleUpperCase("nl-NL"));
+}
+
 function isValidEmail(email) {
   return EMAIL_REGEX.test(email);
 }
@@ -129,10 +134,10 @@ function buildContactRow(iconHtml, contentHtml) {
 }
 
 function renderSignature(data) {
-  const fname = data.fname?.trim() ? escapeHtml(data.fname.trim()) : '<span class="placeholder">Voornaam</span>';
-  const lname = data.lname?.trim() ? escapeHtml(data.lname.trim()) : '<span class="placeholder">Achternaam</span>';
-  const role = data.role?.trim() ? escapeHtml(data.role.trim()) : '<span class="placeholder">Functie</span>';
-  const department = data.department?.trim() ? escapeHtml(data.department.trim()) : "";
+  const fname = data.fname?.trim() ? escapeUpper(data.fname.trim()) : '<span class="placeholder">VOORNAAM</span>';
+  const lname = data.lname?.trim() ? escapeUpper(data.lname.trim()) : '<span class="placeholder">ACHTERNAAM</span>';
+  const role = data.role?.trim() ? escapeUpper(data.role.trim()) : '<span class="placeholder">FUNCTIE</span>';
+  const department = data.department?.trim() ? escapeUpper(data.department.trim()) : "";
   const note = data.note?.trim() ? escapeHtml(data.note.trim()) : "";
 
   const phoneRaw = data.phone?.trim() || "";
