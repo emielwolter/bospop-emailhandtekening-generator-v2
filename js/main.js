@@ -114,8 +114,8 @@ function renderSignature(data) {
     : "";
 
   return `
-<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" align="left"
-  style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; color:#262626; font-family:Arial, sans-serif; width:600px;">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="601" align="left"
+  style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; color:#262626; font-family:Arial, sans-serif; width:601px;">
   <tbody>
     <tr>
       <td width="300" valign="top"
@@ -134,7 +134,7 @@ function renderSignature(data) {
             : ""
         }
       </td>
-      <td width="1" bgcolor="#000000"></td>
+      <td width="1" bgcolor="#000000" style="width: 1px;"></td>
       <td width="300" valign="middle"
         style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; line-height:18px; mso-line-height-rule:exactly; padding-top:0; padding-right:20px; padding-bottom:0; padding-left:20px; vertical-align:middle;">
         ${
@@ -156,16 +156,17 @@ function renderSignature(data) {
             : ""
         }
       </td>
+      
     </tr>
 
     <tr>
-      <td colspan="2" style="padding-top:10px; padding-right:0; padding-bottom:0; padding-left:0;">
+      <td colspan="3" style="padding-top:10px; padding-right:0; padding-bottom:0; padding-left:0;">
         <a href="https://www.bospopfestival.nl/e-mailhandtekening/" target="_blank" rel="noopener noreferrer"
           style="text-decoration:none; border:0; outline:0;">
           <img
             src="${ASSET_BASE_URL}/bospop-e-mailhandtekening-footer.png"
-            alt="Volg Bospop op social media" width="600" height="36" border="0"
-            style="display:block; width:600px; height:36px; max-width:600px; border:0; outline:none; text-decoration:none; -ms-interpolation-mode:bicubic;">
+            alt="Volg Bospop op social media" width="601" height="36" border="0"
+            style="display:block; width:601px; height:36px; max-width:601px; border:0; outline:none; text-decoration:none; -ms-interpolation-mode:bicubic;">
         </a>
       </td>
     </tr>
@@ -174,8 +175,8 @@ function renderSignature(data) {
       note
         ? `
     <tr>
-      <td colspan="2"
-        style="max-width:600px; padding-top:10px; padding-right:20px; padding-bottom:10px; padding-left:20px; line-height:11px; mso-line-height-rule:exactly;">
+      <td colspan="3"
+        style="max-width:601px; padding-top:10px; padding-right:20px; padding-bottom:10px; padding-left:20px; line-height:11px; mso-line-height-rule:exactly;">
         <span
           style="font-size:9pt; font-family:Arial, sans-serif; color:#000000; line-height:11px; mso-line-height-rule:exactly;">${note}</span>
       </td>
