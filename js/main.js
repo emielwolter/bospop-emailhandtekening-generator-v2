@@ -139,20 +139,20 @@ function renderSignature(data) {
         style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; line-height:18px; mso-line-height-rule:exactly; padding-top:0; padding-right:20px; padding-bottom:0; padding-left:20px; vertical-align:middle;">
         ${
           phone
-            ? `<span style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; font-weight:bold; line-height:18px; mso-line-height-rule:exactly;">${ICON_PHONE}${phone}</span><br>`
+            ? `<span style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; font-weight:normal; line-height:18px; mso-line-height-rule:exactly;">${ICON_PHONE}${phone}</span><br>`
             : ""
         }
         <span
-          style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; font-weight:bold; line-height:18px; mso-line-height-rule:exactly;">
+          style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; font-weight:normal; line-height:18px; mso-line-height-rule:exactly;">
           ${ICON_MAIL}${email}
         </span><br>
         <span
-          style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; font-weight:bold; line-height:18px; mso-line-height-rule:exactly;">
+          style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; font-weight:normal; line-height:18px; mso-line-height-rule:exactly;">
           ${ICON_WEB}${website}
         </span><br>
         ${
           linkedin
-            ? `<span style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; font-weight:bold; line-height:18px; mso-line-height-rule:exactly;">${ICON_LINKEDIN}${linkedin}</span><br>`
+            ? `<span style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; font-weight:normal; line-height:18px; mso-line-height-rule:exactly;">${ICON_LINKEDIN}${linkedin}</span><br>`
             : ""
         }
       </td>

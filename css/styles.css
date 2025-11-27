@@ -65,15 +65,13 @@
 /* fonts */
 @font-face {
   font-family: "Barlow Condensed";
-  src: url("../fonts/BarlowCondensed/BarlowCondensed-Regular.ttf")
-    format("truetype");
+  src: url("../fonts/BarlowCondensed/BarlowCondensed-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: "Barlow Condensed";
-  src: url("../fonts/BarlowCondensed/BarlowCondensed-Black.ttf")
-    format("truetype");
+  src: url("../fonts/BarlowCondensed/BarlowCondensed-Black.ttf") format("truetype");
   font-weight: 900;
   font-style: normal;
 }
@@ -95,8 +93,7 @@
 body {
   margin: 0;
   font-family: var(--font-body);
-  background: url(../assets/bospop-emailhandtekening-generator-background.png)
-    center/cover no-repeat fixed;
+  background: url(../assets/bospop-emailhandtekening-generator-background.png) center/cover no-repeat fixed;
   color: var(--color-black);
   line-height: 1.4;
   /* height: 100vh;
@@ -152,7 +149,7 @@ h2 {
 }
 
 a {
-  color: #93102f;
+  color: #3b645f;
 }
 
 .form-group {
