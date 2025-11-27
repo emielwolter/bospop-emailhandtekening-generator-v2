@@ -27,6 +27,8 @@ const GA_MEASUREMENT_ID = "G-KFBZF0WNVM";
 
 // Reusable constants & helpers
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const BLOCKED_EMAIL_DOMAINS = ["bospop.nl"];
+const PREFERRED_EMAIL_DOMAIN = "bospopfestival.nl";
 const DEFAULT_REGION = "NL";
 const ICON_STYLE = "border:0; display:block; width:12px; height:12px; -ms-interpolation-mode:bicubic;";
 const ICON_PHONE = `<img src="${ASSET_BASE_URL}/icons/icon-phone.png" alt="Tel" style="${ICON_STYLE}" />`;
@@ -381,6 +383,15 @@ function validateEmailField(showRequiredMessage = false) {
 
   if (!isValidEmail(email)) {
     setFieldError(emailInput, emailError, "Ongeldig e-mailadres. Controleer het formaat.");
+    return false;
+  }
+
+  const [localPart, rawDomain] = email.split("@");
+  const domain = rawDomain?.toLowerCase();
+  if (BLOCKED_EMAIL_DOMAINS.includes(domain)) {
+    const updatedEmail = `${localPart}@${PREFERRED_EMAIL_DOMAIN}`;
+    emailInput.value = updatedEmail;
+    setFieldError(emailInput, emailError, "@bospop.nl wordt niet meer gebruikt. Gebruik @bospopfestival.nl.");
     return false;
   }
 
