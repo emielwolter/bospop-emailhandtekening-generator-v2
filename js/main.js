@@ -37,8 +37,10 @@ const LINK_STYLE = "color:#000000 !important; text-decoration:none !important;";
 const LINK_SPAN_STYLE = "color:#000000 !important; text-decoration:none !important;";
 const CONTACT_ICON_CELL_STYLE = "width:16px; padding:0; padding-right:8px; padding-bottom:3px; vertical-align:middle;";
 const CONTACT_VALUE_CELL_STYLE =
-  "font-size:10pt; font-family:Arial, sans-serif; color:#000000; font-weight:normal; line-height:18px; mso-line-height-rule:exactly; padding:0; padding-bottom:3px; vertical-align:middle;";
+  "font-size:10pt; font-family:Arial, sans-serif; color:#000000!important; font-weight:normal; line-height:18px; mso-line-height-rule:exactly; padding:0; padding-bottom:3px; vertical-align:middle;";
 const CONTACT_TABLE_STYLE = "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;";
+const NAME_TABLE_STYLE = "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;";
+const NAME_ROW_SPACING_STYLE = "padding:0; padding-bottom:8px;";
 
 function escapeHtml(str = "") {
   return String(str).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
@@ -96,7 +98,9 @@ function buildContactRow(iconHtml, contentHtml) {
             <font color="#000000">${iconHtml}</font>
           </td>
           <td valign="middle" style="${CONTACT_VALUE_CELL_STYLE}">
+          <font color="#000000">
             ${contentHtml}
+          </font>
           </td>
         </tr>`;
 }
@@ -146,19 +150,31 @@ function renderSignature(data) {
     <tr>
       <td width="300" valign="top"
         style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; line-height:18px; mso-line-height-rule:exactly;  padding-top:0; padding-right:20px; padding-bottom:0; padding-left:20px;">
-        <span
-          style="font-size:23pt; font-family:'Arial Black', Arial, sans-serif; color:#000000; line-height:26px; mso-line-height-rule:exactly; text-transform:uppercase; font-weight:900;">
-          ${fname}<br>${lname}
-        </span><br>
-        <span
-          style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; text-transform:uppercase; font-weight:normal; line-height:18px; mso-line-height-rule:exactly;">
-          ${role}
-        </span><br>
-        ${
-          department
-            ? `<span style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; text-transform:uppercase; font-weight:normal; line-height:18px; mso-line-height-rule:exactly;">${department}</span>`
-            : ""
-        }
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="${NAME_TABLE_STYLE}">
+          <tbody>
+            <tr>
+              <td style="${NAME_ROW_SPACING_STYLE}">
+                <span
+                  style="font-size:23pt; font-family:'Arial Black', Arial, sans-serif; color:#000000; line-height:26px; mso-line-height-rule:exactly; text-transform:uppercase; font-weight:900; display:block;">
+                  ${fname}<br>${lname}
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:0;">
+                <span
+                  style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; text-transform:uppercase; font-weight:normal; line-height:18px; mso-line-height-rule:exactly; display:block;">
+                  ${role}
+                </span>
+                ${
+                  department
+                    ? `<span style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; text-transform:uppercase; font-weight:normal; line-height:18px; mso-line-height-rule:exactly; display:block;">${department}</span>`
+                    : ""
+                }
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </td>
       <td width="1" bgcolor="#000000" style="width: 1px;"></td>
       <td width="300" valign="middle"
