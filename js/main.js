@@ -125,12 +125,12 @@ function renderSignature(data) {
           ${fname}<br>${lname}
         </span><br>
         <span
-          style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; text-transform:uppercase; font-weight:bold; line-height:18px; mso-line-height-rule:exactly;">
+          style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; text-transform:uppercase; font-weight:normal; line-height:18px; mso-line-height-rule:exactly;">
           ${role}
         </span><br>
         ${
           department
-            ? `<span style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; text-transform:uppercase; font-weight:bold; line-height:18px; mso-line-height-rule:exactly;">${department}</span>`
+            ? `<span style="font-size:10pt; font-family:Arial, sans-serif; color:#000000; text-transform:uppercase; font-weight:normal; line-height:18px; mso-line-height-rule:exactly;">${department}</span>`
             : ""
         }
       </td>
