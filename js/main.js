@@ -28,7 +28,7 @@ const GA_MEASUREMENT_ID = "G-KFBZF0WNVM";
 // Reusable constants & helpers
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const DEFAULT_REGION = "NL";
-const ICON_STYLE = "border:0; display:inline-block; width:14px; height:14px; margin-right:4px; -ms-interpolation-mode:bicubic;";
+const ICON_STYLE = "border:0; display:inline-block; width:12px; height:12px; margin-right:4px; -ms-interpolation-mode:bicubic;";
 const ICON_PHONE = `<img src="${ASSET_BASE_URL}/icons/icon-phone.png" alt="Tel" style="${ICON_STYLE}" />`;
 const ICON_MAIL = `<img src="${ASSET_BASE_URL}/icons/icon-mail.png" alt="E-mail" style="${ICON_STYLE}" />`;
 const ICON_WEB = `<img src="${ASSET_BASE_URL}/icons/icon-web.png" alt="Website" style="${ICON_STYLE}" />`;
