@@ -213,7 +213,7 @@ function renderSignature(data) {
         </table>
       </td>
       <td width="1" bgcolor="#000000" style="width:1px; padding:0; font-size:0; line-height:0;">&nbsp;</td>
-      <td width="299" valign="top" style="padding:0; vertical-align:top;">
+      <td width="299" valign="middle" style="padding:0; vertical-align:middle;">
         <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"
           style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
           <tbody>
