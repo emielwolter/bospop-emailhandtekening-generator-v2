@@ -21,7 +21,7 @@ const customDepartmentError = document.getElementById("customDepartmentError");
 const linkedinError = document.getElementById("linkedinError");
 
 // Basisconfiguratie voor assets en analytics
-const ASSET_BASE_URL = `${window.location.origin}/assets`;
+const ASSET_BASE_URL = "https://bospopfestival.nl/wp-content/uploads/2026/02";
 const ENABLE_ANALYTICS = true; // Zet op true als je Google Analytics wilt gebruiken
 const GA_MEASUREMENT_ID = "G-KFBZF0WNVM";
 
