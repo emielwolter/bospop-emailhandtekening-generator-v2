@@ -152,7 +152,7 @@ function renderSignature(data) {
   const emailRaw = data.email?.trim() || "";
   const email = emailRaw
     ? `<a href="mailto:${escapeHtml(emailRaw)}" style="${LINK_STYLE}" target="_blank"><span style="${LINK_SPAN_STYLE}">${escapeHtml(
-        emailRaw
+        emailRaw,
       )}</span></a>`
     : '<span class="placeholder">v.achternaam@bospopfestival.nl</span>';
 
@@ -162,7 +162,7 @@ function renderSignature(data) {
   const linkedinHref = linkedinRaw ? ensureHttps(linkedinRaw) : "";
   const linkedin = linkedinHref
     ? `<a href="${escapeHtml(
-        linkedinHref
+        linkedinHref,
       )}" style="${LINK_STYLE}" target="_blank" rel="noopener noreferrer"><span style="${LINK_SPAN_STYLE}">Voeg me toe op LinkedIn</span></a>`
     : "";
 
@@ -197,7 +197,7 @@ function renderSignature(data) {
           <tbody>
             <tr>
               <td style="padding:0 20px 8px 20px; word-break:break-word;">
-                <span style="font-size:23pt; font-family:'Barlow Condensed','Arial Narrow','Helvetica Neue Condensed','Roboto Condensed','Arial Black', Arial, Helvetica,sans-serif; color:#000000; line-height:26px; mso-line-height-rule:exactly; text-transform:uppercase; font-weight:900; display:block;">${fname}<br>${lname}</span>
+                <span style="font-size:23pt; font-family: 'Arial Narrow','Helvetica Neue Condensed','Roboto Condensed','Arial Black', Arial, Helvetica,sans-serif; color:#000000; line-height:26px; mso-line-height-rule:exactly; text-transform:uppercase; font-weight:900; display:block;">${fname}<br>${lname}</span>
               </td>
             </tr>
             <tr>
@@ -488,7 +488,7 @@ function validateLinkedinField() {
     setFieldError(
       linkedinInput,
       linkedinError,
-      "Ongeldige LinkedIn URL. Gebruik een volledige URL, bijvoorbeeld https://www.linkedin.com/in/jouwprofiel."
+      "Ongeldige LinkedIn URL. Gebruik een volledige URL, bijvoorbeeld https://www.linkedin.com/in/jouwprofiel.",
     );
     return false;
   }
