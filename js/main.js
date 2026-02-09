@@ -40,7 +40,12 @@ const LINK_SPAN_STYLE = "color:#000000 !important; text-decoration:none !importa
 const CONTACT_ICON_CELL_STYLE = "width:16px; padding:0; padding-right:8px; padding-bottom:3px; vertical-align:middle;";
 const CONTACT_VALUE_CELL_STYLE =
   "font-size:10pt; font-family:Arial, Helvetica, sans-serif, 'test'; color:#000000!important; font-weight:normal; line-height:18px; mso-line-height-rule:exactly; padding:0; padding-bottom:3px; vertical-align:middle; word-break:break-word;";
-const CONTACT_TABLE_STYLE = "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;";
+const TABLE_RESET_STYLE = "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;";
+const CONTACT_TABLE_STYLE = TABLE_RESET_STYLE;
+const NAME_LINE_STYLE =
+  "font-size:23pt; font-family:'Arial Narrow','Helvetica Neue Condensed','Roboto Condensed','Arial Black', Arial, Helvetica,sans-serif; color:#000000; line-height:26px; mso-line-height-rule:exactly; text-transform:uppercase; font-weight:900; padding:0;";
+const ROLE_LINE_STYLE =
+  "font-size:10pt; font-family:Arial, Helvetica, sans-serif, 'test'; color:#000000; text-transform:uppercase; font-weight:normal; line-height:18px; mso-line-height-rule:exactly; padding:0;";
 const PERSIST_DEBOUNCE_MS = 150;
 
 function escapeHtml(str = "") {
@@ -137,9 +142,30 @@ function renderSignature(data) {
   const role = data.role?.trim() ? escapeUpper(data.role.trim()) : '<span class="placeholder">FUNCTIE</span>';
   const department = data.department?.trim() ? escapeUpper(data.department.trim()) : "";
   const note = data.note?.trim() ? escapeHtml(data.note.trim()) : "";
-  const departmentRow = department
-    ? `<span style="font-size:10pt; font-family:Arial, Helvetica, sans-serif, 'test'; color:#000000; text-transform:uppercase; font-weight:normal; line-height:18px; mso-line-height-rule:exactly; display:block;">${department}</span>`
-    : "";
+  const nameBlock = `
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="${TABLE_RESET_STYLE}">
+      <tbody>
+        <tr>
+          <td style="${NAME_LINE_STYLE}">${fname}</td>
+        </tr>
+        <tr>
+          <td style="${NAME_LINE_STYLE}">${lname}</td>
+        </tr>
+      </tbody>
+    </table>`;
+
+  const roleDepartmentRows = `
+    <tr>
+      <td style="${ROLE_LINE_STYLE}">${role}</td>
+    </tr>
+    ${department ? `<tr><td style="${ROLE_LINE_STYLE}">${department}</td></tr>` : ""}`;
+
+  const roleDepartmentBlock = `
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="${TABLE_RESET_STYLE}">
+      <tbody>
+        ${roleDepartmentRows}
+      </tbody>
+    </table>`;
 
   const phoneRaw = data.phone?.trim() || "";
   const phoneHref = phoneRaw ? sanitizePhone(phoneRaw) : "";
@@ -197,16 +223,12 @@ function renderSignature(data) {
           <tbody>
             <tr>
               <td style="padding:0 20px 8px 20px; word-break:break-word;">
-                <span style="font-size:23pt; font-family: 'Arial Narrow','Helvetica Neue Condensed','Roboto Condensed','Arial Black', Arial, Helvetica,sans-serif; color:#000000; line-height:26px; mso-line-height-rule:exactly; text-transform:uppercase; font-weight:900; display:block;">${fname}<br>${lname}</span>
+                ${nameBlock}
               </td>
             </tr>
             <tr>
               <td style="padding:0 20px 0 20px;">
-                <span
-                  style="font-size:10pt; font-family:Arial, Helvetica, sans-serif, 'test'; color:#000000; text-transform:uppercase; font-weight:normal; line-height:18px; mso-line-height-rule:exactly; display:block;">
-                  ${role}
-                </span>
-                ${departmentRow}
+                ${roleDepartmentBlock}
               </td>
             </tr>
           </tbody>
