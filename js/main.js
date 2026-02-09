@@ -255,7 +255,8 @@ function renderSignature(data) {
     </tr>
 
     <tr>
-      <td colspan="3" style="padding-top:10px; padding-right:0; padding-bottom:0; padding-left:0;">
+      <td colspan="3" width="600"
+        style="padding-top:10px; padding-right:0; padding-bottom:0; padding-left:0; width:600px;">
         <a href="https://www.bospopfestival.nl/e-mailhandtekening/" target="_blank" rel="noopener noreferrer"
           style="text-decoration:none; border:0; outline:0;">
           <img
