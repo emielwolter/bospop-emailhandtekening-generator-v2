@@ -39,10 +39,8 @@ const LINK_STYLE = "color:#000000 !important; text-decoration:none !important;";
 const LINK_SPAN_STYLE = "color:#000000 !important; text-decoration:none !important;";
 const CONTACT_ICON_CELL_STYLE = "width:16px; padding:0; padding-right:8px; padding-bottom:3px; vertical-align:middle;";
 const CONTACT_VALUE_CELL_STYLE =
-  "font-size:10pt; font-family:Arial, Helvetica, sans-serif, 'test'; color:#000000!important; font-weight:normal; line-height:18px; mso-line-height-rule:exactly; padding:0; padding-bottom:3px; vertical-align:middle;";
+  "font-size:10pt; font-family:Arial, Helvetica, sans-serif, 'test'; color:#000000!important; font-weight:normal; line-height:18px; mso-line-height-rule:exactly; padding:0; padding-bottom:3px; vertical-align:middle; word-break:break-word;";
 const CONTACT_TABLE_STYLE = "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;";
-const NAME_TABLE_STYLE = "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;";
-const NAME_ROW_SPACING_STYLE = "padding:0; padding-bottom:8px;";
 const PERSIST_DEBOUNCE_MS = 150;
 
 function escapeHtml(str = "") {
@@ -139,6 +137,9 @@ function renderSignature(data) {
   const role = data.role?.trim() ? escapeUpper(data.role.trim()) : '<span class="placeholder">FUNCTIE</span>';
   const department = data.department?.trim() ? escapeUpper(data.department.trim()) : "";
   const note = data.note?.trim() ? escapeHtml(data.note.trim()) : "";
+  const departmentRow = department
+    ? `<span style="font-size:10pt; font-family:Arial, Helvetica, sans-serif, 'test'; color:#000000; text-transform:uppercase; font-weight:normal; line-height:18px; mso-line-height-rule:exactly; display:block;">${department}</span>`
+    : "";
 
   const phoneRaw = data.phone?.trim() || "";
   const phoneHref = phoneRaw ? sanitizePhone(phoneRaw) : "";
@@ -174,42 +175,57 @@ function renderSignature(data) {
     .filter(Boolean)
     .join("");
 
+  const noteRow = note
+    ? `
+    <tr>
+      <td colspan="3"
+        style="padding-top:10px; padding-right:20px; padding-bottom:10px; padding-left:20px; line-height:11px; mso-line-height-rule:exactly; word-break:break-word;">
+        <span
+          style="font-size:9pt; font-family:Arial, Helvetica, sans-serif, 'test'; color:#000000; line-height:11px; mso-line-height-rule:exactly;">${note}</span>
+      </td>
+    </tr>`
+    : "";
+
   return `
-<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="601" align="left"
-  style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; color:#262626; font-family:Arial, Helvetica, sans-serif, 'test'; width:601px;">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" align="left"
+  style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; table-layout:fixed; color:#262626; font-family:Arial, Helvetica, sans-serif, 'test'; width:600px;">
   <tbody>
     <tr>
-      <td width="300" valign="top"
-        style="font-size:10pt; font-family:Arial, Helvetica, sans-serif, 'test'; color:#000000; line-height:18px; mso-line-height-rule:exactly;  padding-top:0; padding-right:20px; padding-bottom:0; padding-left:20px;">
-        <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="${NAME_TABLE_STYLE}">
+      <td width="300" valign="top" style="padding:0; vertical-align:top;">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"
+          style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
           <tbody>
             <tr>
-              <td style="${NAME_ROW_SPACING_STYLE}">
-                <span style="font-size:23pt; font-family:'Barlow Condensed','Arial Narrow','Helvetica Neue Condensed','Roboto Condensed','Arial Black', Arial, Helvetica,sans-serif; color:#000000; line-height:26px; mso-line-height-rule:exactly; text-transform:uppercase; font-weight:900;">${fname}<br>${lname}</span>
+              <td style="padding:0 20px 8px 20px; word-break:break-word;">
+                <span style="font-size:23pt; font-family:'Barlow Condensed','Arial Narrow','Helvetica Neue Condensed','Roboto Condensed','Arial Black', Arial, Helvetica,sans-serif; color:#000000; line-height:26px; mso-line-height-rule:exactly; text-transform:uppercase; font-weight:900; display:block;">${fname}<br>${lname}</span>
               </td>
             </tr>
             <tr>
-              <td style="padding:0;">
+              <td style="padding:0 20px 0 20px;">
                 <span
                   style="font-size:10pt; font-family:Arial, Helvetica, sans-serif, 'test'; color:#000000; text-transform:uppercase; font-weight:normal; line-height:18px; mso-line-height-rule:exactly; display:block;">
                   ${role}
                 </span>
-                ${
-                  department
-                    ? `<span style="font-size:10pt; font-family:Arial, Helvetica, sans-serif, 'test'; color:#000000; text-transform:uppercase; font-weight:normal; line-height:18px; mso-line-height-rule:exactly; display:block;">${department}</span>`
-                    : ""
-                }
+                ${departmentRow}
               </td>
             </tr>
           </tbody>
         </table>
       </td>
-      <td width="1" bgcolor="#000000" style="width: 1px;"></td>
-      <td width="300" valign="middle"
-        style="font-size:10pt; font-family:Arial, Helvetica, sans-serif, 'test'; color:#000000; line-height:18px; mso-line-height-rule:exactly; padding-top:0; padding-right:20px; padding-bottom:0; padding-left:20px; vertical-align:middle;">
-        <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="${CONTACT_TABLE_STYLE}">
+      <td width="1" bgcolor="#000000" style="width:1px; padding:0; font-size:0; line-height:0;">&nbsp;</td>
+      <td width="299" valign="top" style="padding:0; vertical-align:top;">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"
+          style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
           <tbody>
-            ${contactRows}
+            <tr>
+              <td style="padding:0 20px 0 20px;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="${CONTACT_TABLE_STYLE}">
+                  <tbody>
+                    ${contactRows}
+                  </tbody>
+                </table>
+              </td>
+            </tr>
           </tbody>
         </table>
       </td>
@@ -222,24 +238,13 @@ function renderSignature(data) {
           style="text-decoration:none; border:0; outline:0;">
           <img
             src="${ASSET_BASE_URL}/bospop-e-mailhandtekening-footer.png"
-            alt="Volg Bospop op social media" width="601" height="36" border="0"
-            style="display:block; width:601px; height:36px; max-width:601px; border:0; outline:none; text-decoration:none; -ms-interpolation-mode:bicubic;">
+            alt="Volg Bospop op social media" width="600" height="36" border="0"
+            style="display:block; width:600px; height:36px; max-width:600px; border:0; outline:none; text-decoration:none; -ms-interpolation-mode:bicubic;">
         </a>
       </td>
     </tr>
 
-    ${
-      note
-        ? `
-    <tr>
-      <td colspan="3"
-        style="max-width:601px; padding-top:10px; padding-right:20px; padding-bottom:10px; padding-left:20px; line-height:11px; mso-line-height-rule:exactly; line-break:anywhere;">
-        <span
-          style="font-size:9pt; font-family:Arial, Helvetica, sans-serif, 'test'; color:#000000; line-height:11px; mso-line-height-rule:exactly;">${note}</span>
-      </td>
-    </tr>`
-        : ""
-    }
+    ${noteRow}
   </tbody>
 </table>
 `;
