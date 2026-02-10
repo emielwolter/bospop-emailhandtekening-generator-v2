@@ -43,7 +43,7 @@ const CONTACT_VALUE_CELL_STYLE =
 const TABLE_RESET_STYLE = "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;";
 const CONTACT_TABLE_STYLE = TABLE_RESET_STYLE;
 const NAME_LINE_STYLE =
-  "font-size:23pt; font-family:Arial, Helvetica, sans-serif; color:#000000; line-height:26px; mso-line-height-rule:exactly; text-transform:uppercase; font-weight:600; padding:0;";
+  "font-size:23pt; font-family:Arial, Helvetica, sans-serif; color:#000000; line-height:30px; mso-line-height-rule:exactly; text-transform:uppercase; font-weight:600; padding-top:1px; padding-bottom:1px; padding-left:0; padding-right:0;";
 const ROLE_LINE_STYLE =
   "font-size:10pt; font-family:Arial, Helvetica, sans-serif; color:#000000; text-transform:uppercase; font-weight:normal; line-height:18px; mso-line-height-rule:exactly; padding:0;";
 const PERSIST_DEBOUNCE_MS = 150;
